@@ -1,0 +1,72 @@
+{
+  "_comment": "学习进度状态机。每日任务生成器读写此文件。手改也可以，但保持字段结构。",
+  "schema_version": 1,
+  "student": {
+    "background": "计算机专业出身，底子薄",
+    "goal": "求职 - AI应用开发/LLM应用工程师",
+    "deadline": "2026-11-01",
+    "start_date": "2026-08-03",
+    "daily_hours_baseline": 6,
+    "daily_hours_max": 8,
+    "rest_day": "saturday",
+    "english_level": "weak-improving",
+    "primary_language": "python"
+  },
+  "current": {
+    "week": 1,
+    "day_index": 0,
+    "phase": "摸底与Python补漏",
+    "next_task_date": "2026-08-03",
+    "baseline_test_done": false,
+    "roadmap_recalibrated": false
+  },
+  "streak": {
+    "current": 0,
+    "longest": 0,
+    "total_days_completed": 0,
+    "missed_days": 0,
+    "consecutive_missed": 0
+  },
+  "difficulty": {
+    "level": "unknown",
+    "_comment": "unknown|easy|normal|hard - 摸底测试后由生成器设定",
+    "consecutive_easy": 0,
+    "consecutive_struggle": 0
+  },
+  "skills_assessment": {
+    "_comment": "第1周摸底测试后填充。0=没接触 1=知道概念 2=写过 3=熟练",
+    "python_syntax": null,
+    "python_datastructures": null,
+    "python_oop": null,
+    "python_async": null,
+    "error_handling": null,
+    "file_io": null,
+    "git": null,
+    "cli_shell": null,
+    "http_api": null,
+    "sql": null,
+    "docker": null,
+    "english_reading": null
+  },
+  "weak_points": [],
+  "strong_points": [],
+  "deliverables": {
+    "github_repo": null,
+    "project_a_rag": {
+      "status": "not_started",
+      "repo": null,
+      "live_url": null
+    },
+    "project_b_agent": {
+      "status": "not_started",
+      "repo": null,
+      "live_url": null
+    }
+  },
+  "history": [],
+  "notify": {
+    "channel": "feishu_webhook",
+    "webhook_configured": true,
+    "webhook_env_var": "FEISHU_WEBHOOK_URL"
+  }
+}

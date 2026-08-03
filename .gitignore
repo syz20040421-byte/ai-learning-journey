@@ -1,0 +1,26 @@
+# ── 密钥与凭证（绝对不能提交）────────────────────────────
+scripts/.feishu_webhook
+.env
+*.key
+*.pem
+credentials.json
+
+# ── 运行时状态（本机专属，无需版本控制）──────────────────
+state/
+*.log
+
+# ── Python ───────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# ── 编辑器与系统 ─────────────────────────────────────────
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
