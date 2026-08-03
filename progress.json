@@ -14,9 +14,9 @@
   },
   "current": {
     "week": 1,
-    "day_index": 0,
+    "day_index": 1,
     "phase": "摸底与Python补漏",
-    "next_task_date": "2026-08-03",
+    "next_task_date": "2026-08-04",
     "baseline_test_done": false,
     "roadmap_recalibrated": false
   },
@@ -63,7 +63,16 @@
       "live_url": null
     }
   },
-  "history": [],
+  "history": [
+    {
+      "date": "2026-08-03",
+      "week": 1,
+      "topic": "GitHub 环境与能力摸底",
+      "submitted": false,
+      "passed": null,
+      "note": "首日任务已生成并推送；待提交 GitHub 初始化和 3 小时摸底作业。"
+    }
+  ],
   "notify": {
     "channel": "feishu_webhook",
     "webhook_configured": true,
