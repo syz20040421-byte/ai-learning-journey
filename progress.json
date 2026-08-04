@@ -21,8 +21,8 @@
     "roadmap_recalibrated": false
   },
   "streak": {
-    "current": 0,
-    "longest": 0,
+    "current": 1,
+    "longest": 1,
     "total_days_completed": 0,
     "missed_days": 0,
     "consecutive_missed": 0
@@ -51,7 +51,7 @@
   "weak_points": [],
   "strong_points": [],
   "deliverables": {
-    "github_repo": null,
+    "github_repo": "https://github.com/syz20040421-byte/ai-learning-journey",
     "project_a_rag": {
       "status": "not_started",
       "repo": null,
@@ -70,7 +70,8 @@
       "topic": "GitHub 环境与能力摸底",
       "submitted": false,
       "passed": null,
-      "note": "首日任务已生成并推送；待提交 GitHub 初始化和 3 小时摸底作业。"
+      "note": "GitHub 环境搭建完成并推送成功（2 commits，代理已配置）；摸底完成 01/02 两题（01 达标签收）；英语/笔记/剩余摸底因时间顺延至 8/4。",
+      "deferred_to": "2026-08-04"
     }
   ],
   "notify": {
