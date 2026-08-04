@@ -14,9 +14,9 @@
   },
   "current": {
     "week": 1,
-    "day_index": 1,
+    "day_index": 2,
     "phase": "摸底与Python补漏",
-    "next_task_date": "2026-08-04",
+    "next_task_date": "2026-08-05",
     "baseline_test_done": false,
     "roadmap_recalibrated": false
   },
@@ -72,6 +72,14 @@
       "passed": null,
       "note": "GitHub 环境搭建完成并推送成功（2 commits，代理已配置）；摸底完成 01/02 两题（01 达标签收）；英语/笔记/剩余摸底因时间顺延至 8/4。",
       "deferred_to": "2026-08-04"
+    },
+    {
+      "date": "2026-08-04",
+      "week": 1,
+      "topic": "摸底续做",
+      "submitted": true,
+      "passed": null,
+      "note": "摸底提交完成（commit 993b520 已推送）：01/02/03 独立完成（03 有轻微笔误），02 修正可变默认参数理解；04-14 如实标注不会（未学过文件IO/argparse/HTTP/SQL 等）。英语摘录+路线理解+卡点笔记齐全。等待 8/5 批改与路线重排。"
     }
   ],
   "notify": {
