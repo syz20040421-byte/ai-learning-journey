@@ -14,42 +14,53 @@
   },
   "current": {
     "week": 1,
-    "day_index": 2,
+    "day_index": 3,
     "phase": "摸底与Python补漏",
-    "next_task_date": "2026-08-05",
-    "baseline_test_done": false,
-    "roadmap_recalibrated": false
+    "next_task_date": "2026-08-06",
+    "baseline_test_done": true,
+    "roadmap_recalibrated": true
   },
   "streak": {
-    "current": 1,
-    "longest": 1,
-    "total_days_completed": 0,
+    "current": 2,
+    "longest": 2,
+    "total_days_completed": 1,
     "missed_days": 0,
     "consecutive_missed": 0
   },
   "difficulty": {
-    "level": "unknown",
+    "level": "normal",
     "_comment": "unknown|easy|normal|hard - 摸底测试后由生成器设定",
     "consecutive_easy": 0,
     "consecutive_struggle": 0
   },
   "skills_assessment": {
     "_comment": "第1周摸底测试后填充。0=没接触 1=知道概念 2=写过 3=熟练",
-    "python_syntax": null,
-    "python_datastructures": null,
-    "python_oop": null,
-    "python_async": null,
-    "error_handling": null,
-    "file_io": null,
-    "git": null,
-    "cli_shell": null,
-    "http_api": null,
-    "sql": null,
-    "docker": null,
-    "english_reading": null
+    "python_syntax": 2,
+    "python_datastructures": 1,
+    "python_oop": 2,
+    "python_async": 0,
+    "error_handling": 1,
+    "file_io": 0,
+    "git": 2,
+    "cli_shell": 1,
+    "http_api": 0,
+    "sql": 0,
+    "docker": 0,
+    "english_reading": 1
   },
-  "weak_points": [],
-  "strong_points": [],
+  "weak_points": [
+    "数据结构选型与复杂度(dict/set零接触)",
+    "文件IO",
+    "异常机制",
+    "类属性vs实例属性",
+    "英语独立阅读"
+  ],
+  "strong_points": [
+    "基础语法扎实",
+    "诚实标注不会",
+    "Git基本操作上手",
+    "对照阅读能执行"
+  ],
   "deliverables": {
     "github_repo": "https://github.com/syz20040421-byte/ai-learning-journey",
     "project_a_rag": {
@@ -80,6 +91,14 @@
       "submitted": true,
       "passed": null,
       "note": "摸底提交完成（commit 993b520 已推送）：01/02/03 独立完成（03 有轻微笔误），02 修正可变默认参数理解；04-14 如实标注不会（未学过文件IO/argparse/HTTP/SQL 等）。英语摘录+路线理解+卡点笔记齐全。等待 8/5 批改与路线重排。"
+    },
+    {
+      "date": "2026-08-05",
+      "week": 1,
+      "topic": "数据结构选型：dict/set 与复杂度",
+      "submitted": false,
+      "passed": null,
+      "note": "摸底批改完成（review/2026-08-05.md）：01/03 达标，02 O(n²) 今日重写，04-06 如实标注。路线已按摸底重排，baseline_test_done=true。Day 3 任务已推送飞书。"
     }
   ],
   "notify": {
