@@ -21,9 +21,9 @@
     "roadmap_recalibrated": true
   },
   "streak": {
-    "current": 2,
-    "longest": 2,
-    "total_days_completed": 1,
+    "current": 3,
+    "longest": 3,
+    "total_days_completed": 2,
     "missed_days": 0,
     "consecutive_missed": 0
   },
@@ -96,9 +96,9 @@
       "date": "2026-08-05",
       "week": 1,
       "topic": "数据结构选型：dict/set 与复杂度",
-      "submitted": false,
-      "passed": null,
-      "note": "摸底批改完成（review/2026-08-05.md）：01/03 达标，02 O(n²) 今日重写，04-06 如实标注。路线已按摸底重排，baseline_test_done=true。Day 3 任务已推送飞书。"
+      "submitted": true,
+      "passed": true,
+      "note": "Day 3 通过（commit 90a7d69）：first_unique 手写 dict 计数 O(n)、merge_stock 含入参校验 assert、问题3 修正 O(n)。小尾巴：== None 仍有一处未改，下不为例。"
     }
   ],
   "notify": {
