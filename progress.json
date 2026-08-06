@@ -14,9 +14,9 @@
   },
   "current": {
     "week": 1,
-    "day_index": 4,
+    "day_index": 5,
     "phase": "摸底与Python补漏",
-    "next_task_date": "2026-08-07",
+    "next_task_date": "2026-08-09",
     "baseline_test_done": true,
     "roadmap_recalibrated": true
   },
@@ -107,6 +107,14 @@
       "submitted": true,
       "passed": true,
       "note": "Day 4 通过（commit 6cccc35 已推送）：safe_divide/parse_scores 实跑全过，坏行跳过不中断，==None 收尾已清。笔记总结/今日一问首轮漏写被指出后补齐，commit 流程经提醒完成。"
+    },
+    {
+      "date": "2026-08-07",
+      "week": 1,
+      "topic": "文件 IO（周检日）",
+      "submitted": false,
+      "passed": null,
+      "note": "任务已生成并推送飞书（04_file_io 摸底遗留题收掉 + 周检 4 概念题）。脚手架已预置。"
     }
   ],
   "notify": {
