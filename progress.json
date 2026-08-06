@@ -21,9 +21,9 @@
     "roadmap_recalibrated": true
   },
   "streak": {
-    "current": 3,
-    "longest": 3,
-    "total_days_completed": 2,
+    "current": 4,
+    "longest": 4,
+    "total_days_completed": 3,
     "missed_days": 0,
     "consecutive_missed": 0
   },
@@ -39,7 +39,7 @@
     "python_datastructures": 2,
     "python_oop": 2,
     "python_async": 0,
-    "error_handling": 1,
+    "error_handling": 2,
     "file_io": 0,
     "git": 2,
     "cli_shell": 1,
@@ -51,7 +51,6 @@
   "weak_points": [
     "大O复杂度分析（基础刚补，需巩固）",
     "文件IO",
-    "异常机制",
     "类属性vs实例属性",
     "英语独立阅读"
   ],
@@ -59,7 +58,8 @@
     "基础语法扎实",
     "诚实标注不会",
     "Git基本操作上手",
-    "对照阅读能执行"
+    "对照阅读能执行",
+    "能按批改意见补齐并自查"
   ],
   "deliverables": {
     "github_repo": "https://github.com/syz20040421-byte/ai-learning-journey",
@@ -104,9 +104,9 @@
       "date": "2026-08-06",
       "week": 1,
       "topic": "异常机制：try/except 与错误设计",
-      "submitted": false,
-      "passed": null,
-      "note": "任务已生成并推送飞书（safe_divide / parse_scores，含 ==None 收尾项）。脚手架已预置。"
+      "submitted": true,
+      "passed": true,
+      "note": "Day 4 通过（commit 6cccc35 已推送）：safe_divide/parse_scores 实跑全过，坏行跳过不中断，==None 收尾已清。笔记总结/今日一问首轮漏写被指出后补齐，commit 流程经提醒完成。"
     }
   ],
   "notify": {
