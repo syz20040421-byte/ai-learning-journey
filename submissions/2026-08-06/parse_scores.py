@@ -14,16 +14,37 @@ from typing import Tuple
 
 
 def parse_score_line(line: str) -> Tuple[str, int]:
-    # 你的实现：
-    pass  # 删掉这句，写你的实现
+    parts = line.split(",")             # ① 按逗号切开
+    if len(parts) < 2:                  # ② 没切出两半 → 没有逗号 → 抛
+        raise ValueError("缺少逗号")
+    name, score_str = parts[0], parts[1]
+    if not score_str.isdigit():         # ③ 分数部分不是纯数字 → 抛
+        raise ValueError("分数不是整数")
+    return name, int(score_str)         # ④ 全过了 → 返回 (姓名, 分数)
 
 
 def load_scores(lines: list[str]) -> dict[str, int]:
-    # 你的实现：逐行调用 parse_score_line，坏行 try/except 捕获并跳过
-    pass  # 删掉这句，写你的实现
+    scores = {}
+    for i, line in enumerate(lines, start=1):   # ① 行号从 1 开始
+        try:                                     # ② 兜底接异常
+            name, score = parse_score_line(line)
+        except ValueError as e:                  # ③ 不区分种类，都接住
+            print(f"第 {i} 行跳过：{e}")          #    打印原因（e 就是错误消息）
+            continue                             # ④ 跳过这行，继续下一行
+        scores[name] = score                     # ⑤ 好行收进 dict
+    return scores
 
 
-# 你的 assert 写在这里（正常两行 / 无逗号坏行跳过 / 非整数坏行跳过 / 结果只含好行）
-# 建议测试数据：
-# lines = ["张三,90", "李四,abc", "王五", "赵六,85"]
-# 期望结果：{"张三": 90, "赵六": 85}，两条坏行各打印一次跳过提示
+# ========== assert 测试 ==========
+lines = ["张三,90", "李四,abc", "王五", "赵六,85"]
+result = load_scores(lines)
+
+# 场景1：正常两行解析正确 + 场景4：dict 只含好行
+assert result == {"张三": 90, "赵六": 85}
+# 场景2：无逗号坏行（王五）被跳过
+assert "王五" not in result
+# 场景3：非整数坏行（李四,abc）被跳过
+assert "李四" not in result
+
+# 补充：parse_score_line 单测（正常路径）
+assert parse_score_line("张三,90") == ("张三", 90)

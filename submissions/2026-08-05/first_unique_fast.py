@@ -19,7 +19,7 @@ def first_unique(items: list[str]) -> Optional[str]:
       return s
 
 assert first_unique(["a", "b", "a"]) == "b" #有唯一元素
-assert first_unique(["a", "a", "a"]) == None #无唯一元素
+assert first_unique(["a", "a", "a"]) is None #无唯一元素
 assert first_unique([]) is  None #空列表
 
 
