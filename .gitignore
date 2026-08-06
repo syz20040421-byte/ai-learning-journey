@@ -24,3 +24,6 @@ venv/
 .idea/
 Thumbs.db
 desktop.ini
+
+# git worktree 工作目录（本机专属）
+.worktrees/

@@ -14,9 +14,9 @@
   },
   "current": {
     "week": 1,
-    "day_index": 3,
+    "day_index": 4,
     "phase": "摸底与Python补漏",
-    "next_task_date": "2026-08-06",
+    "next_task_date": "2026-08-07",
     "baseline_test_done": true,
     "roadmap_recalibrated": true
   },
@@ -36,7 +36,7 @@
   "skills_assessment": {
     "_comment": "第1周摸底测试后填充。0=没接触 1=知道概念 2=写过 3=熟练",
     "python_syntax": 2,
-    "python_datastructures": 1,
+    "python_datastructures": 2,
     "python_oop": 2,
     "python_async": 0,
     "error_handling": 1,
@@ -49,7 +49,7 @@
     "english_reading": 1
   },
   "weak_points": [
-    "数据结构选型与复杂度(dict/set零接触)",
+    "大O复杂度分析（基础刚补，需巩固）",
     "文件IO",
     "异常机制",
     "类属性vs实例属性",
@@ -99,6 +99,14 @@
       "submitted": true,
       "passed": true,
       "note": "Day 3 通过（commit 90a7d69）：first_unique 手写 dict 计数 O(n)、merge_stock 含入参校验 assert、问题3 修正 O(n)。小尾巴：== None 仍有一处未改，下不为例。"
+    },
+    {
+      "date": "2026-08-06",
+      "week": 1,
+      "topic": "异常机制：try/except 与错误设计",
+      "submitted": false,
+      "passed": null,
+      "note": "任务已生成并推送飞书（safe_divide / parse_scores，含 ==None 收尾项）。脚手架已预置。"
     }
   ],
   "notify": {
