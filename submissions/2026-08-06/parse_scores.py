@@ -12,28 +12,37 @@
 """
 from typing import Tuple
 
-
-def parse_score_line(line: str) -> Tuple[str, int]:
-    parts = line.split(",")             # ① 按逗号切开
-    if len(parts) < 2:                  # ② 没切出两半 → 没有逗号 → 抛
+def parse_score_line(line: str) -> Tuple[str, int]: #输入字符串返回元组，先定义一个空元组
+    return_tuple = tuple()
+    parts = line.split(",") 
+    #将字符串以','作为分割界限分割，并写入到列表parts中
+    if len(parts) < 2:
         raise ValueError("缺少逗号")
-    name, score_str = parts[0], parts[1]
-    if not score_str.isdigit():         # ③ 分数部分不是纯数字 → 抛
+    #判断列表长度，如果小于2说明分割前字符串中没有','，即缺少成绩
+    try:
+        name,score = parts[0],int(parts[1])
+    except ValueError:
         raise ValueError("分数不是整数")
-    return name, int(score_str)         # ④ 全过了 → 返回 (姓名, 分数)
+    #parts中的元素都是字符串，如果要进行整数强转不确定是否成功，用try进行尝试，如果parts[1]不是整数，就会报错
+    return_tuple = (name,score)
+    return return_tuple
 
-
-def load_scores(lines: list[str]) -> dict[str, int]:
-    scores = {}
-    for i, line in enumerate(lines, start=1):   # ① 行号从 1 开始
-        try:                                     # ② 兜底接异常
-            name, score = parse_score_line(line)
-        except ValueError as e:                  # ③ 不区分种类，都接住
-            print(f"第 {i} 行跳过：{e}")          #    打印原因（e 就是错误消息）
-            continue                             # ④ 跳过这行，继续下一行
-        scores[name] = score                     # ⑤ 好行收进 dict
-    return scores
-
+def load_scores(lines: list[str]) -> dict[str, int]: #输入列表，返回字典，先定义一个空字典
+    return_dict = dict()
+    for i,line in enumerate(lines,start=1):  
+        #将列表中每一部分都遍历一遍 lines[i] = line，start = 1表示从lines[1]开始
+        #enumerate表示同时取出lines中位置索引和对应的值
+        try:
+            name,score = parse_score_line(line)
+        #将name和score分别对应到parse_score_line返回的元组("张三", 90) 
+        except ValueError as e:
+            print(f"第{i}行跳过：{e}")
+            continue
+        #将报错写进e中并打印
+        else:
+            return_dict[name] = score
+        #写入返回的字典中
+    return return_dict
 
 # ========== assert 测试 ==========
 lines = ["张三,90", "李四,abc", "王五", "赵六,85"]
@@ -48,3 +57,8 @@ assert "李四" not in result
 
 # 补充：parse_score_line 单测（正常路径）
 assert parse_score_line("张三,90") == ("张三", 90)
+
+
+
+
+

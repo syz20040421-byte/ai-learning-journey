@@ -28,6 +28,7 @@ assert safe_divide(10, 2) == 5.0
 # 除零真的抛 ValueError（用题目给的 try 模式）
 try:
     safe_divide(1, 0)
-    raise AssertionError("应该抛出 ValueError")   # 没抛才会走到这 → 测试失败
 except ValueError:
-    pass                                        # 抛了 → 测试通过
+    pass                                       # 抛了 → 测试通过
+else:
+    raise AssertionError("应该抛出 ValueError")   # 没抛才会走到这 → 测试失败
