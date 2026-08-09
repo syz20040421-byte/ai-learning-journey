@@ -117,8 +117,9 @@
     }
   ],
   "notify": {
-    "channel": "feishu_webhook",
-    "webhook_configured": true,
+    "_comment": "2026-08-09 学员明确:不推送飞书。每日任务只写 Obsidian daily/,不再调用 feishu_push.py。webhook 配置保留未删。",
+    "channel": "obsidian_local",
+    "webhook_configured": false,
     "webhook_env_var": "FEISHU_WEBHOOK_URL"
   }
 }
