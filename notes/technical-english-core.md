@@ -82,6 +82,21 @@
 | status code | 状态码 | "status code 200" |
 | server / client | 服务器 / 客户端 | "client error" |
 
+## 第六组：面向对象（Day 6）
+
+| 英文 | 中文 | 出现场景 |
+|---|---|---|
+| define | 定义 | "define a class" |
+| attribute | 属性 | "instance attributes" |
+| instance | 实例（对象） | "create an instance" |
+| class attribute | 类属性（属于类，全体共享） | "class attributes are shared" |
+| shared | 共享的 | "shared by all instances" |
+| bind / binding | 绑定（把名字绑到对象） | "the name is bound to the object" |
+| assign | 赋值 | "assign an attribute" |
+| lookup | 查找（按名字找值） | "attribute lookup" |
+| override / shadow | 覆盖 / 遮蔽（实例属性盖住类属性） | "an instance attribute shadows the class attribute" |
+| constructor | 构造方法（`__init__`） | "the constructor is called" |
+
 ---
 
 ## 三个高频句式（看文档先认句式）
