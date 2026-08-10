@@ -30,28 +30,23 @@ def parse_score_line(line: str) -> Tuple[str, int]:
 
 
 def load_scores(path: str) -> dict[str, int]:
-    # 你的实现：with open + try/except FileNotFoundError + 逐行解析
-    file_line = []
     return_dict = dict()
     try:
-        with open(path,'r',encoding='utf-8') as f:
-            file_line = f.readlines()
+        with open(path, 'r', encoding='utf-8') as f:
+            for i, line in enumerate(f, start=1):   # 逐行迭代，无需readlines()
+                line1 = line.strip()
+                if not line1:
+                    print(f"第{i}行跳过：空行")
+                    continue
+                try:
+                    name, score = parse_score_line(line)
+                except ValueError as e:
+                    print(f"第{i}行跳过：{e}")
+                else:
+                    return_dict[name] = score
     except FileNotFoundError:
         print("文件不存在")
-    for i,line in enumerate(file_line,start=1):
-        line1 = line.strip()
-        if not line1:
-            print(f"第{i}行跳过：空行")          # 跳过空行（可选，因为空行也会被解析异常捕获）
-            continue
-        try:
-            name,score = parse_score_line(line)
-        except ValueError as e:
-            print(f"第{i}行跳过：{e}")
-            #将报错写进e中并打印
-        else:
-            return_dict[name] = score
-            #写入返回的字典中
-    return return_dict 
+    return return_dict
 
 
 
