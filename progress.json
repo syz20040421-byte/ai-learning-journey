@@ -14,9 +14,9 @@
   },
   "current": {
     "week": 1,
-    "day_index": 7,
+    "day_index": 8,
     "phase": "摸底与Python补漏",
-    "next_task_date": "2026-08-10",
+    "next_task_date": "2026-08-11",
     "baseline_test_done": true,
     "roadmap_recalibrated": true
   },
@@ -31,7 +31,7 @@
     "level": "normal",
     "_comment": "unknown|easy|normal|hard - 摸底测试后由生成器设定",
     "consecutive_easy": 0,
-    "consecutive_struggle": 0
+    "consecutive_struggle": 1
   },
   "skills_assessment": {
     "_comment": "第1周摸底测试后填充。0=没接触 1=知道概念 2=写过 3=熟练",
@@ -50,15 +50,18 @@
   },
   "weak_points": [
     "大O复杂度分析（基础刚补，需巩固）",
-    "类属性vs实例属性",
-    "英语独立阅读"
+    "英语独立阅读",
+    "写完不自测：跑通≠完成，验收标准需逐条自证",
+    "语句执行顺序与返回值（__init__ 判空顺序、append 返回 None）"
   ],
   "strong_points": [
     "基础语法扎实",
     "诚实标注不会",
     "Git基本操作上手",
     "对照阅读能执行",
-    "能按批改意见补齐并自查"
+    "能按批改意见补齐并自查",
+    "按要求重构旧代码（load_scores 改逐行迭代，两处同步）",
+    "类属性/实例属性概念已通（实验 + 今日一问全对）"
   ],
   "deliverables": {
     "github_repo": "https://github.com/syz20040421-byte/ai-learning-journey",
@@ -114,6 +117,14 @@
       "submitted": true,
       "passed": true,
       "note": "Day 5 通过（commit 0a63128 已推送）：04_file_io.py 实跑 exit=0，坏行/空行/文件不存在三条路径全部真实验证；scores.txt 含 4 有效+1 空+2 坏行。周检 4 题全答（dict O(1) vs list O(n²) 正确），今日一问答出 __enter__/__exit__ 机制超纲。收尾项：数据文件必须覆盖任务要求的坏行组合。file_io 0→2。"
+    },
+    {
+      "date": "2026-08-09",
+      "week": 1,
+      "topic": "类与实例：OOP 补漏",
+      "submitted": true,
+      "passed": false,
+      "note": "未通过（约60%）：05_oop.py 实跑 exit=0 但主流程缺失、类方法未被调用；4 个已标注坑全在（__init__ 判空顺序反、add_score 覆盖成 None、average 迭代 TypeError、__str__ 缺括号）；综合③ summary.txt 未写；笔记卡点/心得空缺；未 commit。实验②正确、parse/load 完成且按批改意见改逐行迭代。处置：Day 7 先补尾巴再上综合验收，streak 不增减。"
     }
   ],
   "notify": {

@@ -97,6 +97,21 @@
 | override / shadow | 覆盖 / 遮蔽（实例属性盖住类属性） | "an instance attribute shadows the class attribute" |
 | constructor | 构造方法（`__init__`） | "the constructor is called" |
 
+## 第七组：HTTP 与 API（Day 7）
+
+| 英文 | 中文 | 出现场景 |
+|---|---|---|
+| endpoint | 端点（API 的具体地址） | "the API endpoint" |
+| query parameter | 查询参数（URL 问号后的 ?key=value） | "query parameters are passed in the URL" |
+| JSON | 一种键值对数据格式 | "the response is in JSON format" |
+| timeout | 超时（等待上限） | "set a timeout for the request" |
+| header | 请求头 / 响应头 | "the request headers" |
+| payload | 载荷（请求/响应里的数据体） | "the payload of the response" |
+| API | 应用程序接口 | "call the API" |
+| rate limit | 限流（单位时间请求次数上限） | "you hit the rate limit" |
+| parse | 解析（把文本转成结构化数据） | "parse the JSON response" |
+| fetch / retrieve | 获取（从远处取数据） | "fetch data from the server" |
+
 ---
 
 ## 三个高频句式（看文档先认句式）
