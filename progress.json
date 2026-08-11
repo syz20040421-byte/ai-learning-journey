@@ -14,9 +14,9 @@
   },
   "current": {
     "week": 1,
-    "day_index": 8,
+    "day_index": 9,
     "phase": "摸底与Python补漏",
-    "next_task_date": "2026-08-11",
+    "next_task_date": "2026-08-12",
     "baseline_test_done": true,
     "roadmap_recalibrated": true
   },
@@ -51,8 +51,8 @@
   "weak_points": [
     "大O复杂度分析（基础刚补，需巩固）",
     "英语独立阅读",
-    "写完不自测：跑通≠完成，验收标准需逐条自证（Day 6 补交已改善，需保持）",
-    "笔记心得/卡点敷衍：3 句心得、卡点复盘常空缺（Day 7 必须补齐）"
+    "没做完就交：Day 7 代码留 pass 桩、笔记交空模板便提交——比「做完但错」更危险，批改无法定位卡点（Day 8 补完综合验收后移除）",
+    "环境意识：python 命令指向哪个解释器、缺包先看环境（Day 7 疑似卡在 requests 缺失，.venv 用法已写入任务书）"
   ],
   "strong_points": [
     "基础语法扎实",
@@ -61,7 +61,8 @@
     "对照阅读能执行",
     "能按批改意见补齐并自查",
     "按要求重构旧代码（load_scores 改逐行迭代，两处同步）",
-    "类属性/实例属性概念已通（实验 + 今日一问全对）"
+    "类属性/实例属性概念已通（实验 + 今日一问全对）",
+    "Day 6 收尾全部闭环：心得 3 句、卡点、问题 2 末句均按批改意见补齐并已 push（98e267a）"
   ],
   "deliverables": {
     "github_repo": "https://github.com/syz20040421-byte/ai-learning-journey",
@@ -125,6 +126,14 @@
       "submitted": true,
       "passed": true,
       "note": "补交复核通过（白天补完，实跑 exit=0）：4 坑全修（__init__ 判空顺序/add_score 不覆盖/average 空列表 0.0/__str__ 括号）；方案 A 落地 load_scores 返回 dict[str,list[int]] 同名追加，平均分真算（张三 99.0、里斯 93.0、英超 70.5、法甲 72.0）；综合③ summary.txt 含表头与打印一致；数据 8 有效+1 空+2 坏行；Day 5 readlines 改逐行迭代两处同步。小尾巴：笔记心得 3 句与卡点仍空缺（Day 7 补）。streak 5→6。"
+    },
+    {
+      "date": "2026-08-10",
+      "week": 1,
+      "topic": "综合验收：读CSV→调API→写回（Part B）",
+      "submitted": true,
+      "passed": false,
+      "note": "Day 7 未完成：06_integration.py 三个函数全 pass 桩、主流程空，实跑 exit=0 无输出；无 cities.csv/weather.csv；notes/2026-08-10-integration.md 空模板未作答。Day 6 收尾全部闭环（心得/卡点/问题2 末句补齐，98e267a 已 push）。疑似卡点：python 指向 hermes 环境缺 requests（.venv 用法已写入任务书，环境实测 200/29.1℃）。不记缺勤，streak 停 6。Day 8 续做综合验收，通过后进第 2 周。"
     }
   ],
   "notify": {
