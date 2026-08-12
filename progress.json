@@ -14,16 +14,16 @@
   },
   "current": {
     "week": 1,
-    "day_index": 9,
+    "day_index": 8,
     "phase": "摸底与Python补漏",
-    "next_task_date": "2026-08-12",
+    "next_task_date": "2026-08-13",
     "baseline_test_done": true,
     "roadmap_recalibrated": true
   },
   "streak": {
-    "current": 6,
-    "longest": 6,
-    "total_days_completed": 5,
+    "current": 7,
+    "longest": 7,
+    "total_days_completed": 6,
     "missed_days": 0,
     "consecutive_missed": 0
   },
@@ -40,19 +40,18 @@
     "python_oop": 2,
     "python_async": 0,
     "error_handling": 2,
-    "file_io": 2,
+    "file_io": 3,
     "git": 2,
     "cli_shell": 1,
-    "http_api": 0,
+    "http_api": 1,
     "sql": 0,
     "docker": 0,
     "english_reading": 1
   },
   "weak_points": [
     "大O复杂度分析（基础刚补，需巩固）",
-    "英语独立阅读",
-    "没做完就交：Day 7 代码留 pass 桩、笔记交空模板便提交——比「做完但错」更危险，批改无法定位卡点（Day 8 补完综合验收后移除）",
-    "环境意识：python 命令指向哪个解释器、缺包先看环境（Day 7 疑似卡在 requests 缺失，.venv 用法已写入任务书）"
+    "英语独立阅读（8/12 起改为教练推送非技术短文+摘词句+英文感悟，持续练）",
+    "把实时数据硬编码进断言（应写类型/范围断言，8/13 修后移除）"
   ],
   "strong_points": [
     "基础语法扎实",
@@ -62,7 +61,10 @@
     "能按批改意见补齐并自查",
     "按要求重构旧代码（load_scores 改逐行迭代，两处同步）",
     "类属性/实例属性概念已通（实验 + 今日一问全对）",
-    "Day 6 收尾全部闭环：心得 3 句、卡点、问题 2 末句均按批改意见补齐并已 push（98e267a）"
+    "Day 6 收尾全部闭环：心得 3 句、卡点、问题 2 末句均按批改意见补齐并已 push（98e267a）",
+    "Day 7 综合验收补交通过：全链路实跑 exit=0，坏行/空行/文件不存在/真实 API 四路径自测（8/12）",
+    "按任务书用 .venv 解决环境问题（不再卡在 python 指向 hermes 环境）",
+    "能主动质疑批改（指出每日一问与笔记 Q1 重复）"
   ],
   "deliverables": {
     "github_repo": "https://github.com/syz20040421-byte/ai-learning-journey",
@@ -132,8 +134,17 @@
       "week": 1,
       "topic": "综合验收：读CSV→调API→写回（Part B）",
       "submitted": true,
-      "passed": false,
-      "note": "Day 7 未完成：06_integration.py 三个函数全 pass 桩、主流程空，实跑 exit=0 无输出；无 cities.csv/weather.csv；notes/2026-08-10-integration.md 空模板未作答。Day 6 收尾全部闭环（心得/卡点/问题2 末句补齐，98e267a 已 push）。疑似卡点：python 指向 hermes 环境缺 requests（.venv 用法已写入任务书，环境实测 200/29.1℃）。不记缺勤，streak 停 6。Day 8 续做综合验收，通过后进第 2 周。"
+      "passed": true,
+      "note": "Day 7 补交复核通过（8/12 实跑 exit=0）：三函数+主流程完整，真实 API 北京25.9/上海27.9/广州36.8℃，weather.csv 与打印一致；坏行/空行/文件不存在三路径全实测；笔记 4 问+今日一问全答（还指出一问与笔记 Q1 重复，质疑合理）。英语摘录未做——8/12 学员新规取消技术英语环节，该验收项作废不补。小尾巴 3 个（docstring 卡在行缺失、硬编码 36.8 断言、坏纬度不 continue）8/13 修。streak 6→7。"
+    },
+    {
+      "date": "2026-08-11",
+      "week": 1,
+      "topic": "综合验收续做（Day 8）",
+      "submitted": false,
+      "passed": null,
+      "note": "个人原因未做任务。8/12 学员确认：顺延至 8/13（任务书已按新模板重写为 daily/2026-08-13.md）。",
+      "deferred_to": "2026-08-13"
     }
   ],
   "notify": {
