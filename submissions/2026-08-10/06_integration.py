@@ -1,5 +1,5 @@
 """Day 7 练习：第 1 周综合验收 — 读 CSV → 调 API → 处理 → 写回文件。
-昨天没空写
+昨天没写完卡在：昨天没空写
 任务要求（验收标准）：
 - load_cities(path) -> list[dict]：读 CSV（表头 city,latitude,longitude），坏行打印原因跳过；
   文件不存在打印提示、返回空列表（复用 Day 5 的逐行模式）
@@ -61,7 +61,16 @@ def fetch_weather(lat: float, lon: float) -> dict | None:
         print(f"发生错误：{e}")
         return None
     return return_dict
-           
+
+WEATHER = {
+     0: "晴", 1: "晴间多云", 2: "多云", 3: "阴", 45: "雾", 48: "雾凇",
+            51: "毛毛雨", 53: "小毛毛雨", 55: "毛毛雨",
+            61: "小雨", 63: "中雨", 65: "大雨",
+            71: "小雪", 73: "中雪", 75: "大雪",
+            80: "阵雨", 81: "强阵雨", 82: "暴雨",
+            95: "雷暴", 96: "雷暴伴冰雹", 99: "雷暴伴冰雹",
+}
+
 def save_results(rows: list[dict], path: str) -> None:
     # 写 weather.csv：表头 city,temperature,weathercode，encoding="utf-8"
     with open(path,'w',encoding='utf-8',newline="") as f:
@@ -87,7 +96,8 @@ for i in range(len(read_list)):
         print(f"{read_list[i]['city']}的经纬度有问题")
         continue
     if tem is not None:
-        print(f"{read_list[i]['city']}的temperature是{tem['temperature']}")
+        desc = WEATHER.get(tem["weathercode"], f"未知代码{tem['weathercode']}")
+        print(f"{read_list[i]['city']}，{tem['temperature']}℃ ，{desc}")
         re_dict["city"] = read_list[i]["city"]
         re_dict["temperature"] = tem["temperature"]
         re_dict["weathercode"] = tem["weathercode"]
