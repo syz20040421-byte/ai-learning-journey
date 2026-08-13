@@ -13,7 +13,7 @@
 - 全程自己 debug：可以问 AI「为什么报这个错」，禁止让 AI 写完整代码
 """
 from __future__ import annotations
-import requests,csv
+import requests,csv,json
 
 def load_cities(path: str) -> list[dict]:
     # 读 CSV：跳过表头，坏行打印原因（复用 Day 5 逐行模式）
@@ -48,19 +48,31 @@ def fetch_weather(lat: float, lon: float) -> dict | None:
     # requests.get(..., timeout=10) 必须设
     # 成功 → {"temperature": ..., "weathercode": ...}
     # 失败（超时/断网/非 200）→ 打印错误，返回 None，不抛异常
-    return_dict = dict()
+    url = (
+        f"https://api.open-meteo.com/v1/forecast"
+        f"?latitude={lat}&longitude={lon}&current_weather=true"
+    )
     try:
-        request = requests.get(f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true",timeout=10)
-        if request.status_code == 200:
-            date = request.json()
-            return_dict["temperature"] = date["current_weather"]["temperature"]
-            return_dict["weathercode"] = date["current_weather"]["weathercode"]
-        else:
-            raise requests.RequestException
+        resp = requests.get(url, timeout=10)
+        resp.raise_for_status()  # 非 2xx 状态码会抛出 HTTPError（是 RequestException 的子类）
+        data = resp.json()
+        # 使用 .get() 或直接访问，若缺失则触发 KeyError，由外层捕获
+        return {
+            "temperature": data["current_weather"]["temperature"],
+            "weathercode": data["current_weather"]["weathercode"],
+        }
     except requests.exceptions.RequestException as e:
-        print(f"发生错误：{e}")
+        # 捕获超时、连接错误、HTTP 错误等
+        print(f"请求异常: {e}")
         return None
-    return return_dict
+    except (json.JSONDecodeError, KeyError, TypeError) as e:
+        # 捕获 JSON 解析失败或数据结构不符
+        print(f"数据解析异常: {e}")
+        return None
+    except Exception as e:
+        # 兜底，捕获任何未预料的异常（保证永不抛出）
+        print(f"未知异常: {e}")
+        return None
 
 WEATHER = {
      0: "晴", 1: "晴间多云", 2: "多云", 3: "阴", 45: "雾", 48: "雾凇",
