@@ -2,7 +2,7 @@
 """飞书群机器人推送（方案 A：自定义机器人 Webhook）
 
 用法:
-    python feishu_push.py --title "Day 1 任务" --file ../daily/2026-08-04.md
+    python feishu_push.py --title "Day 1 任务" --file ../daily/2026-08/2026-W32/2026-08-04.md
     python feishu_push.py --title "测试" --text "hello"
     python feishu_push.py --title "测试" --text "hello" --dry-run
 

@@ -18,6 +18,8 @@
 | 提交方式 | 本地 `submissions/`（建议尽早迁 GitHub，commit 历史即简历证据） |
 | 任务交付 | Obsidian `daily/`（2026-08-09 起**不再推送飞书**，学员直接看本地任务文件） |
 
+> **目录归档约定（2026-08-13 起）**：`daily/`、`notes/`、`submissions/`、`review/` 下的日期文件统一按 `YYYY-MM/YYYY-Www/`（月/ISO 周）两级归档，如 `daily/2026-08/2026-W33/2026-08-13.md`；无日期文件（如 `notes/technical-english-core.md`）留在目录根。
+
 ## 求职导向的三条硬约束
 
 这条路线不是「学得全」，是「13 周后有东西给人看」。招聘方实际看三样：
