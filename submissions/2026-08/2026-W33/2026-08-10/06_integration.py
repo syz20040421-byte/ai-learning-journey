@@ -30,7 +30,7 @@ def load_cities(path: str) -> list[dict]:
                 lines = line.strip()
                 return_dict = dict()
                 if not lines:
-                    print(f"第{i}行跳过：空行")
+                    print(f"第{i}行跳过：空行666")
                     continue
                 list1 = lines.split(",")
                 try:
