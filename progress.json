@@ -14,18 +14,18 @@
   },
   "current": {
     "week": 2,
-    "day_index": 9,
+    "day_index": 10,
     "phase": "Python 进阶 + Git + 工程习惯",
     "next_task_date": "2026-08-16",
     "baseline_test_done": true,
     "roadmap_recalibrated": true
   },
   "streak": {
-    "current": 0,
+    "current": 1,
     "longest": 8,
-    "total_days_completed": 7,
+    "total_days_completed": 8,
     "missed_days": 1,
-    "consecutive_missed": 1
+    "consecutive_missed": 0
   },
   "difficulty": {
     "level": "normal",
@@ -171,8 +171,8 @@
       "week": 2,
       "topic": "Day 9 补交（推导式/生成器 + pathlib 修回归 + Git 分支）",
       "submitted": true,
-      "passed": false,
-      "note": "学员 8/14 休息未做，8/15（周六休息日）补交 Day 9。comprehension.py 五函数实跑全过；三问全对；英语追问真吸收（append 语境错/come a long way 固定短语自解释）。未通过项：① 06_integration.py pathlib 假绿——路径写成 BASE_DIR/../../2026-08-10/cities.csv 解析到不存在的目录，load_cities 返回 []，主流程空转，weather.csv 被覆盖成空表头；② Git 分支练习完全未做；③ 笔记模块名违规（#笔记/#每日一问，应为 #学习笔记/#英语/#今日三问）且学习笔记空白。待修 4 项转 8/16。streak 8→0（8/14 缺勤）。",
+      "passed": true,
+      "note": "三次复核通过（22:40 实跑 exit=0）：路径改对为 BASE_DIR/cities.csv 同目录直拼（无 ..）；实跑 3 城市真实天气（北京25.5/上海25.7/广州27.0），weather.csv 三行完整；Git 分支练习真做（git log --graph 可见 feature/main 两线 + merge e6a1529 冲突解决）；笔记三模块归位（#英语/#学习笔记/#今日三问），学习笔记 5 条扎实。comprehension 五函数此前已过。小尾巴：5 个 commit 未 push（教练收尾代 push，已提醒学员下次自己 push）。streak 8/14 缺勤归 0 → 8/15 补交通过 current 1。Day 9 收官。",
       "deferred_from": "2026-08-14"
     }
   ],
