@@ -21,11 +21,11 @@
     "roadmap_recalibrated": true
   },
   "streak": {
-    "current": 8,
+    "current": 0,
     "longest": 8,
     "total_days_completed": 7,
-    "missed_days": 0,
-    "consecutive_missed": 0
+    "missed_days": 1,
+    "consecutive_missed": 1
   },
   "difficulty": {
     "level": "normal",
@@ -156,6 +156,24 @@
       "passed": true,
       "note": "Day 8 收官通过（commit 61782b1/e16d919）：英语模块达标超额（15 词 4 句中英感悟，诚实标注不懂的单词）；三问 Q2/Q3 对、Q1 首答错（raise 必要性）重答过——新答案核心点对，补 2 个追问（主流程死 try/except 未答、答案与代码 raise_for_status 打架）；fetch_weather 重写删除裸 raise、改 raise_for_status + 三类异常分开处理，实跑 exit=0 北京27.9/上海28.7/广州35.0。周1巩固三题（week1-review q1/q2/q3）8/14 复跑全过：None 链路/复杂度实测 4 万倍差距/读写不对称。遗留：06_integration.py 硬编码路径因 8/13 归档失效（8/14 教练复跑发现，转 Day 9 pathlib 修复）；死 try/except 转 Day 9 三问。streak 7→8。",
       "deferred_from": "2026-08-11"
+    },
+    {
+      "date": "2026-08-14",
+      "week": 2,
+      "topic": "Day 9（推导式/生成器 + pathlib 修回归 + Git 分支）",
+      "submitted": false,
+      "passed": null,
+      "note": "学员休息未做（8/15 学员说明）。8/15 休息日补交，见 8/15 条目。streak 中断（8→0）。",
+      "deferred_to": "2026-08-15"
+    },
+    {
+      "date": "2026-08-15",
+      "week": 2,
+      "topic": "Day 9 补交（推导式/生成器 + pathlib 修回归 + Git 分支）",
+      "submitted": true,
+      "passed": false,
+      "note": "学员 8/14 休息未做，8/15（周六休息日）补交 Day 9。comprehension.py 五函数实跑全过；三问全对；英语追问真吸收（append 语境错/come a long way 固定短语自解释）。未通过项：① 06_integration.py pathlib 假绿——路径写成 BASE_DIR/../../2026-08-10/cities.csv 解析到不存在的目录，load_cities 返回 []，主流程空转，weather.csv 被覆盖成空表头；② Git 分支练习完全未做；③ 笔记模块名违规（#笔记/#每日一问，应为 #学习笔记/#英语/#今日三问）且学习笔记空白。待修 4 项转 8/16。streak 8→0（8/14 缺勤）。",
+      "deferred_from": "2026-08-14"
     }
   ],
   "notify": {

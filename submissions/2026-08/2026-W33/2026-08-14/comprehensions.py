@@ -33,30 +33,50 @@
 """
 from __future__ import annotations
 
-
+"""
+1. squares_of_evens(n) -> list[int]：
+   用【列表推导式】返回 [0, n) 中所有偶数的平方。
+   例：squares_of_evens(6) == [0, 4, 16]（0², 2², 4²；5 不是偶数所以不算）
 def squares_of_evens(n: int) -> list[int]:
     # 你的实现：列表推导式
     pass
-
-
+"""
+def squares_of_evens(n: int) -> list[int]:
+    squares = [x * x for x in range(n) if x % 2 == 0]
+    return squares
+"""
+2. word_lengths(text) -> dict[str, int]：
+   用【字典推导式】把句子拆成单词，返回 {单词: 长度}。
+   例：word_lengths("a bb ccc") == {"a": 1, "bb": 2, "ccc": 3}
+   注意：text.split() 按空白切，标点不用管。split()返回列表
+"""
 def word_lengths(text: str) -> dict[str, int]:
-    # 你的实现：字典推导式
-    pass
-
-
+    str_list = text.split()
+    str_dict = {x:len(x) for x in str_list}
+    return str_dict
+"""
+3. unique_chars(words) -> set[str]：
+   用【集合推导式】收集所有单词里出现过的字母。
+   例：unique_chars(["ab", "bc"]) == {"a", "b", "c"}
+"""
 def unique_chars(words: list[str]) -> set[str]:
-    # 你的实现：集合推导式
-    pass
-
-
+    return  {y for x in words for y in x}   
+"""
+4. first_n_squares(n) -> generator：
+   写一个【生成器函数】（用 yield），依次产出 0², 1², ..., (n-1)²。
+   不是返回列表！自测会验证它是生成器。
+"""
 def first_n_squares(n: int) -> object:
-    # 你的实现：生成器函数（yield）
-    pass
+    for i in range(n):
+        yield i*i
 
-
+"""
+5. sum_squares_upto(n) -> int：
+   用【生成器表达式】求和 0² + 1² + ... + (n-1)²，只写一行 return。
+   例：sum_squares_upto(4) == 0 + 1 + 4 + 9 == 14
+"""
 def sum_squares_upto(n: int) -> int:
-    # 你的实现：一行生成器表达式
-    pass
+    return sum(i*i for i in range(n))
 
 
 # ============ 自测（别改这里） ============
@@ -67,7 +87,7 @@ if __name__ == "__main__":
 
     assert word_lengths("a bb ccc") == {"a": 1, "bb": 2, "ccc": 3}
     assert word_lengths("") == {}
-
+    
     assert unique_chars(["ab", "bc"]) == {"a", "b", "c"}
     assert unique_chars([]) == set()
 

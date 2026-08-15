@@ -13,32 +13,36 @@
 - 全程自己 debug：可以问 AI「为什么报这个错」，禁止让 AI 写完整代码
 """
 from __future__ import annotations
-import requests,csv,json
+import requests, csv, json
+from pathlib import Path
+
+# 基础目录：当前脚本所在目录
+BASE_DIR = Path(__file__).parent
 
 def load_cities(path: str) -> list[dict]:
     # 读 CSV：跳过表头，坏行打印原因（复用 Day 5 逐行模式）
     # 文件不存在 → 打印提示，返回 []
     return_list = list()
     try:
-      with open(path, 'r', encoding='utf-8') as f:
-              next(f) # 跳过表头
-              for i,line in enumerate(f,start=1):
-                  lines = line.strip()
-                  return_dict = dict()
-                  if not lines:
+        with open(path, 'r', encoding='utf-8') as f:
+            next(f)  # 跳过表头
+            for i, line in enumerate(f, start=1):
+                lines = line.strip()
+                return_dict = dict()
+                if not lines:
                     print(f"第{i}行跳过：空行")
                     continue
-                  list1 = lines.split(",")
-                  try:
-                      list1[1] = float(list1[1])
-                      list1[2] = float(list1[2])
-                  except (ValueError,TypeError):
-                      print(f"{list1[0]}的数据异常")
-                      continue
-                  return_dict["city"] = list1[0]
-                  return_dict["latitude"] = list1[1]
-                  return_dict["longitude"] = list1[2]
-                  return_list.append(return_dict)
+                list1 = lines.split(",")
+                try:
+                    list1[1] = float(list1[1])
+                    list1[2] = float(list1[2])
+                except (ValueError, TypeError):
+                    print(f"{list1[0]}的数据异常")
+                    continue
+                return_dict["city"] = list1[0]
+                return_dict["latitude"] = list1[1]
+                return_dict["longitude"] = list1[2]
+                return_list.append(return_dict)
     except FileNotFoundError:
         print("文件不存在")
         return []
@@ -75,38 +79,34 @@ def fetch_weather(lat: float, lon: float) -> dict | None:
         return None
 
 WEATHER = {
-     0: "晴", 1: "晴间多云", 2: "多云", 3: "阴", 45: "雾", 48: "雾凇",
-            51: "毛毛雨", 53: "小毛毛雨", 55: "毛毛雨",
-            61: "小雨", 63: "中雨", 65: "大雨",
-            71: "小雪", 73: "中雪", 75: "大雪",
-            80: "阵雨", 81: "强阵雨", 82: "暴雨",
-            95: "雷暴", 96: "雷暴伴冰雹", 99: "雷暴伴冰雹",
+    0: "晴", 1: "晴间多云", 2: "多云", 3: "阴", 45: "雾", 48: "雾凇",
+    51: "毛毛雨", 53: "小毛毛雨", 55: "毛毛雨",
+    61: "小雨", 63: "中雨", 65: "大雨",
+    71: "小雪", 73: "中雪", 75: "大雪",
+    80: "阵雨", 81: "强阵雨", 82: "暴雨",
+    95: "雷暴", 96: "雷暴伴冰雹", 99: "雷暴伴冰雹",
 }
 
 def save_results(rows: list[dict], path: str) -> None:
     # 写 weather.csv：表头 city,temperature,weathercode，encoding="utf-8"
-    with open(path,'w',encoding='utf-8',newline="") as f:
-        w = csv.DictWriter(f,fieldnames=["city","temperature","weathercode"])
+    with open(path, 'w', encoding='utf-8', newline="") as f:
+        w = csv.DictWriter(f, fieldnames=["city", "temperature", "weathercode"])
         w.writeheader()
         for row in rows:
             w.writerow(row)
     return None
-        
-
 
 # ============ 主流程 ============
 # 读 cities.csv → 逐个 fetch_weather → 跳过 None → 打印 "城市 温度" → save_results
-read_list = load_cities("submissions/2026-08-10/cities.csv")
+read_list = load_cities(str((BASE_DIR / "../../2026-08-10/cities.csv").resolve()))   # 改用相对路径
 print(read_list)
 
 re_list = list()
 for i in range(len(read_list)):
     re_dict = dict()
-    try:
-        tem = fetch_weather(read_list[i]["latitude"],read_list[i]["longitude"])
-    except requests.RequestException as e:
-        print(f"{read_list[i]['city']}的经纬度有问题")
-        continue
+
+    tem = fetch_weather(read_list[i]["latitude"],read_list[i]["longitude"])
+
     if tem is not None:
         desc = WEATHER.get(tem["weathercode"], f"未知代码{tem['weathercode']}")
         print(f"{read_list[i]['city']}，{tem['temperature']}℃ ，{desc}")
@@ -116,15 +116,15 @@ for i in range(len(read_list)):
         re_list.append(re_dict)
 
 print(re_list)
-save_results(re_list,"submissions/2026-08-10/weather.csv")
+save_results(re_list, str(BASE_DIR / "weather.csv"))   # 直接使用当前目录
 
 
 # ============ assert / 自测 ============
 # ① load_cities：正常解析 3 行 + 坏行跳过 + 文件不存在返回 []
 #正常解析 3 行 + 坏行跳过
-assert load_cities("submissions/2026-08-10/cities.csv") == [{'city': '北京', 'latitude': 39.9042, 'longitude': 116.4074}, {'city': '上海', 'latitude': 31.2304, 'longitude': 121.4737}, {'city': '广州', 'latitude': 23.1291, 'longitude': 113.2644}]
+assert load_cities(str(BASE_DIR / "cities.csv")) == [{'city': '北京', 'latitude': 39.9042, 'longitude': 116.4074}, {'city': '上海', 'latitude': 31.2304, 'longitude': 121.4737}, {'city': '广州', 'latitude': 23.1291, 'longitude': 113.2644}]
 #文件不存在返回 []
-assert load_cities("submissions/2026-08-10/citie.csv") == []
+assert load_cities(str((BASE_DIR / "../../2026-08-10/citie.csv").resolve())) == []
 # ② fetch_weather：真调一次（北京 39.9042,116.4074），确认 temperature 是数字
 tem_bj = fetch_weather(39.9042,116.4074)["temperature"]
 if type(tem_bj) in (int,float):
@@ -132,7 +132,7 @@ if type(tem_bj) in (int,float):
 else:
     print("不是数字")
 # ③ save_results：写完后读回 weather.csv，确认表头与内容
-with open("submissions/2026-08-10/weather.csv",'r',encoding='utf-8') as f:
+with open(str(BASE_DIR / "weather.csv"),'r',encoding='utf-8') as f:
     reader = csv.DictReader(f)
     # 检查表头
     assert reader.fieldnames == ["city","temperature","weathercode"]
