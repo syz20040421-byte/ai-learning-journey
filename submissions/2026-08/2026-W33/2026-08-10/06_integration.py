@@ -17,7 +17,7 @@ import requests, csv, json
 from pathlib import Path
 
 # 基础目录：当前脚本所在目录
-BASE_DIR = Path(__file__).parent
+BASE_DIR = Path(__file__).resolve().parent   # 脚本所在目录的绝对路径
 
 def load_cities(path: str) -> list[dict]:
     # 读 CSV：跳过表头，坏行打印原因（复用 Day 5 逐行模式）
@@ -30,7 +30,7 @@ def load_cities(path: str) -> list[dict]:
                 lines = line.strip()
                 return_dict = dict()
                 if not lines:
-                    print(f"第{i}行跳过：空行666")
+                    print(f"第{i}行跳过：空行！！")
                     continue
                 list1 = lines.split(",")
                 try:
@@ -98,7 +98,7 @@ def save_results(rows: list[dict], path: str) -> None:
 
 # ============ 主流程 ============
 # 读 cities.csv → 逐个 fetch_weather → 跳过 None → 打印 "城市 温度" → save_results
-read_list = load_cities(str((BASE_DIR / "../../2026-08-10/cities.csv").resolve()))   # 改用相对路径
+read_list = load_cities(str(BASE_DIR / "cities.csv"))   # 同目录
 print(read_list)
 
 re_list = list()
@@ -116,7 +116,7 @@ for i in range(len(read_list)):
         re_list.append(re_dict)
 
 print(re_list)
-save_results(re_list, str(BASE_DIR / "weather.csv"))   # 直接使用当前目录
+save_results(re_list, str(BASE_DIR / "weather.csv"))   # 同目录输出
 
 
 # ============ assert / 自测 ============
@@ -124,7 +124,7 @@ save_results(re_list, str(BASE_DIR / "weather.csv"))   # 直接使用当前目�
 #正常解析 3 行 + 坏行跳过
 assert load_cities(str(BASE_DIR / "cities.csv")) == [{'city': '北京', 'latitude': 39.9042, 'longitude': 116.4074}, {'city': '上海', 'latitude': 31.2304, 'longitude': 121.4737}, {'city': '广州', 'latitude': 23.1291, 'longitude': 113.2644}]
 #文件不存在返回 []
-assert load_cities(str((BASE_DIR / "../../2026-08-10/citie.csv").resolve())) == []
+assert load_cities(str(BASE_DIR / "citie.csv")) == []   # 同目录下不存在此文件，符合测试
 # ② fetch_weather：真调一次（北京 39.9042,116.4074），确认 temperature 是数字
 tem_bj = fetch_weather(39.9042,116.4074)["temperature"]
 if type(tem_bj) in (int,float):
