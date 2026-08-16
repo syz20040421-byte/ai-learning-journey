@@ -14,16 +14,16 @@
   },
   "current": {
     "week": 2,
-    "day_index": 10,
+    "day_index": 11,
     "phase": "Python 进阶 + Git + 工程习惯",
-    "next_task_date": "2026-08-16",
+    "next_task_date": "2026-08-17",
     "baseline_test_done": true,
     "roadmap_recalibrated": true
   },
   "streak": {
-    "current": 1,
+    "current": 2,
     "longest": 8,
-    "total_days_completed": 8,
+    "total_days_completed": 9,
     "missed_days": 1,
     "consecutive_missed": 0
   },
@@ -51,7 +51,7 @@
   "weak_points": [
     "大O复杂度分析（基础刚补，需巩固）",
     "英语独立阅读（8/12 起改为教练推送非技术短文+摘词句+英文感悟，持续练）",
-    "硬编码相对路径（8/13 归档后 06_integration.py 路径失效，8/14 起 pathlib 专项修）"
+    "路径/解析问题凭感觉不实测（8/16 Q1 描述与实跑不符；教训：涉及 .. 层级先 python -c 打印再下结论）"
   ],
   "strong_points": [
     "基础语法扎实",
@@ -66,7 +66,8 @@
     "按任务书用 .venv 解决环境问题（不再卡在 python 指向 hermes 环境）",
     "能主动质疑批改（指出每日一问与笔记 Q1 重复）",
     "Day 8 收官：fetch_weather 重写删裸 raise 改 raise_for_status，三类异常分开处理，实跑 exit=0（8/13）",
-    "周1巩固三题全过（week1-review）：None 链路过滤、复杂度实测 42931 倍差距、读写失败不对称（8/14 复跑）"
+    "周1巩固三题全过（week1-review）：None 链路过滤、复杂度实测 42931 倍差距、读写失败不对称（8/14 复跑）",
+    "Day 10 一遍过：装饰器（perf_counter 计时 + 透传 + return result 无漏）+ 迭代器协议 + make_adder 函数返回函数全对，笔记把带参数装饰器三层嵌套都讲清了（8/16）"
   ],
   "deliverables": {
     "github_repo": "https://github.com/syz20040421-byte/ai-learning-journey",
@@ -174,6 +175,14 @@
       "passed": true,
       "note": "三次复核通过（22:40 实跑 exit=0）：路径改对为 BASE_DIR/cities.csv 同目录直拼（无 ..）；实跑 3 城市真实天气（北京25.5/上海25.7/广州27.0），weather.csv 三行完整；Git 分支练习真做（git log --graph 可见 feature/main 两线 + merge e6a1529 冲突解决）；笔记三模块归位（#英语/#学习笔记/#今日三问），学习笔记 5 条扎实。comprehension 五函数此前已过。小尾巴：5 个 commit 未 push（教练收尾代 push，已提醒学员下次自己 push）。streak 8/14 缺勤归 0 → 8/15 补交通过 current 1。Day 9 收官。",
       "deferred_from": "2026-08-14"
+    },
+    {
+      "date": "2026-08-16",
+      "week": 2,
+      "topic": "Day 10（装饰器入门 + 迭代器深化）",
+      "submitted": true,
+      "passed": true,
+      "note": "一遍过（commit 9da1c22 学员自 push）：decorators.py 实跑 exit=0 输出 Day 10 全过，5 函数全对（timer 用 perf_counter、make_adder(5)(3)==8、manual_iter 空列表也过）；三问 Q2/Q3 全对、Q1 首答凭感觉（项目根目录/系统根目录 与实测不符）教练给实测后当天改对；英语词汇 30+ 超额、英文感悟 4 句、追问 4 git 冲突描述与实操一致；学习笔记含三层嵌套超纲内容。小尾巴：sum 遮蔽内置、make_adder 多余中间变量（不扣分）。streak 1→2。"
     }
   ],
   "notify": {
