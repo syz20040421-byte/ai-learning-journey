@@ -1,23 +1,7 @@
 """Day 11 · dataclass 数据类（Week 2）
 
-昨天你学了装饰器——今天 @dataclass 本身就是装饰器，昨天学的「@ 语法 = 函数替换」直接适用。
-
-要求（先读任务书「今日知识点预习」再动手）：
-1. @dataclass class Student：字段 name: str、scores: list[int] = field(default_factory=list)
-   - add_score(score: int) -> None：追加分数（只追加，不覆盖——Day 6 教训）
-   - average() -> float：平均分，空 scores 返回 0.0（Day 6 教训）
-2. @dataclass(frozen=True) class Point：字段 x: float, y: float
-   - 自测里故意改 p.x，用 try/except 捕获 FrozenInstanceError 并打印「已冻结，改不了」
-3. student_to_dict(s: Student) -> dict：用 asdict 转换
-4. dict_to_student(d: dict) -> Student：从 dict 还原实例（Student(**d) 或手动构造）
-5. top_student(students: list) -> Student | None：平均分最高的 Student；空列表返回 None
-
-坑（预习里有详解）：
-- 可变默认值必须 field(default_factory=list)，写 scores: list = [] 会所有实例共享同一个列表
-- frozen 类改字段抛 FrozenInstanceError，用 try/except 捕获而不是让它崩
-- Student(**d) 要求 dict 的 key 和字段名完全一致
-
-自测：填空后运行
+先读任务书「今日知识点预习」再动手。每个函数/类正上方都有它自己的要求（行为 + 边界 + 坑），
+写哪部分看哪部分，不用回翻顶部。填空后运行：
     ".venv/Scripts/python.exe" submissions/2026-08/2026-W34/2026-08-17/dataclass_practice.py
 预期输出：全部 assert 通过 + frozen 捕获打印，最后打印 Day 11 全过
 """
@@ -25,7 +9,12 @@ from __future__ import annotations
 from dataclasses import dataclass, field, asdict
 
 
-"""1. @dataclass class Student"""
+# ═══════════ 1. @dataclass class Student ═══════════
+# 要求：
+#   - 字段：name: str、scores: list[int] = field(default_factory=list)
+#   - add_score(score: int) -> None：追加分数（只追加，不覆盖——Day 6 教训）
+#   - average() -> float：平均分，空 scores 返回 0.0（Day 6 教训）
+# 坑：可变默认值必须 field(default_factory=list)；写 scores: list = [] 会让所有实例共享同一个列表
 @dataclass
 class Student:
     name: str
@@ -40,26 +29,35 @@ class Student:
         ...
 
 
-"""2. @dataclass(frozen=True) class Point"""
+# ═══════════ 2. @dataclass(frozen=True) class Point ═══════════
+# 要求：字段 x: float, y: float（创建后不可改）
+# 自测里会故意 p.x = 99，你要用 try/except 捕获 FrozenInstanceError 并打印「已冻结，改不了」
+# 坑：frozen 只管字段绑定；p.x = 99 会抛 dataclasses.FrozenInstanceError，别让它崩
 @dataclass(frozen=True)
 class Point:
     x: float
     y: float
 
 
-"""3. student_to_dict(s: Student) -> dict"""
+# ═══════════ 3. student_to_dict(s) ═══════════
+# 要求：把 Student 转成普通 dict（用 asdict）
+# 例：student_to_dict(Student("张三", [90])) == {"name": "张三", "scores": [90]}
 def student_to_dict(s: Student) -> dict:
     # 你的实现：用 asdict
     ...
 
 
-"""4. dict_to_student(d: dict) -> Student"""
+# ═══════════ 4. dict_to_student(d) ═══════════
+# 要求：从 dict 还原 Student（Student(**d) 或手动构造）
+# 坑：Student(**d) 要求 dict 的 key 和字段名完全一致，多一个 key 会 TypeError
 def dict_to_student(d: dict) -> Student:
     # 你的实现：从 dict 还原 Student
     ...
 
 
-"""5. top_student(students: list) -> Student | None"""
+# ═══════════ 5. top_student(students) ═══════════
+# 要求：返回平均分最高的 Student；空列表返回 None
+# 坑：max 可以带 key 参数（key=lambda s: s.average()）；空列表直接用 max 会 ValueError，先判空
 def top_student(students: list) -> Student | None:
     # 你的实现：平均分最高者；空列表返回 None
     ...
