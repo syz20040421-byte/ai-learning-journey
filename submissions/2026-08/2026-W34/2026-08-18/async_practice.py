@@ -17,7 +17,8 @@ import time
 # 坑：用 asyncio.sleep（假装睡觉、让出事件循环），别用 time.sleep（真阻塞，会堵死整个循环）
 async def fetch_one(name: str, delay: float = 0.05) -> str:
     # 你的实现：
-    ...
+    await asyncio.sleep(delay)
+    return f"{name} 完成"
 
 
 # ═══════════ 2. async def fetch_all ═══════════
@@ -28,8 +29,9 @@ async def fetch_one(name: str, delay: float = 0.05) -> str:
 # 坑：for 循环里逐个 await 是串行（等完 A 才跑 B）；gather(*tasks) 别忘了星号展开列表
 async def fetch_all(names: list) -> list:
     # 你的实现：
-    ...
-
+    one_list = [fetch_one(x) for x in names]
+    result = await asyncio.gather(*one_list)
+    return result
 
 # ═══════════ 3. async def tick_tock ═══════════
 # 要求：
@@ -42,7 +44,14 @@ async def fetch_all(names: list) -> list:
 async def tick_tock() -> list:
     events = []
     # 你的实现：定义内部 worker 并 gather
-    ...
+    async def worker(name: str) -> None:
+        for i in range(1,4):
+            events.append(f"{name}{i}")
+            await asyncio.sleep(0)
+        return 0
+    await asyncio.gather(worker("A"),worker("B"))
+    return events
+        
 
 
 # ═══════════ 4. async def compare_times ═══════════
@@ -55,7 +64,26 @@ async def tick_tock() -> list:
 # 坑：两次计时都要包住完整的跑法；delay 固定 0.15，串行≈0.45s vs 并发≈0.15s，差距才明显
 async def compare_times(names: list) -> dict:
     # 你的实现：
-    ...
+    times_dict = {}
+    strat1 = time.perf_counter()
+    for x in names:
+        await fetch_one(x,0.15)
+    end1 = time.perf_counter()
+    time1 = end1 - strat1
+
+    strat2 = time.perf_counter()
+    one_list = []
+    for y in names:
+        one_list.append(fetch_one(y,0.15))
+    result = await asyncio.gather(*one_list)
+    end2 = time.perf_counter()
+    time2 = end2 - strat2
+
+    times_dict["sequential"] = time1
+    times_dict["concurrent"] = time2
+
+    return times_dict
+
 
 
 # ═══════════ 5. def call_async_from_sync ═══════════
@@ -65,7 +93,7 @@ async def compare_times(names: list) -> dict:
 # 坑：同步函数里直接 await 是 SyntaxError（'await' outside async function）；asyncio.run 是同步↔异步的桥
 def call_async_from_sync() -> str:
     # 你的实现：
-    ...
+    return asyncio.run(fetch_one("桥", 0.01))
 
 
 # ============ 自测（别改这里） ============
