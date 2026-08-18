@@ -27,3 +27,6 @@ desktop.ini
 
 # git worktree 工作目录（本机专属）
 .worktrees/
+
+# Hermes 代理运行时产物（本机专属）
+.hermes/

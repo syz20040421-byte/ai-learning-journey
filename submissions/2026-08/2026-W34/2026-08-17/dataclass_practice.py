@@ -22,46 +22,52 @@ class Student:
 
     def add_score(self, score: int) -> None:
         # 你的实现：追加分数，不覆盖已有分数
-        ...
+        self.scores.append(score)
+        return None
 
     def average(self) -> float:
         # 你的实现：空列表返回 0.0，否则返回平均分
-        ...
+        if len(self.scores) == 0:
+            return 0.0
+        else:
+            return sum(self.scores)/len(self.scores)
 
 
 # ═══════════ 2. @dataclass(frozen=True) class Point ═══════════
 # 要求：字段 x: float, y: float（创建后不可改）
-# 自测里会故意 p.x = 99，你要用 try/except 捕获 FrozenInstanceError 并打印「已冻结，改不了」
+# 自测里会故意 p.x = 99，你要用 try/except（不能写到下面类中，写在自测里） 捕获 FrozenInstanceError 并打印「已冻结，改不了」
 # 坑：frozen 只管字段绑定；p.x = 99 会抛 dataclasses.FrozenInstanceError，别让它崩
 @dataclass(frozen=True)
 class Point:
-    x: float
-    y: float
-
+        x: float
+        y: float
 
 # ═══════════ 3. student_to_dict(s) ═══════════
 # 要求：把 Student 转成普通 dict（用 asdict）
 # 例：student_to_dict(Student("张三", [90])) == {"name": "张三", "scores": [90]}
 def student_to_dict(s: Student) -> dict:
     # 你的实现：用 asdict
-    ...
-
+    s_dict = asdict(s)
+    return s_dict
 
 # ═══════════ 4. dict_to_student(d) ═══════════
 # 要求：从 dict 还原 Student（Student(**d) 或手动构造）
 # 坑：Student(**d) 要求 dict 的 key 和字段名完全一致，多一个 key 会 TypeError
 def dict_to_student(d: dict) -> Student:
     # 你的实现：从 dict 还原 Student
-    ...
-
+    d_stu = Student(**d)
+    return d_stu
 
 # ═══════════ 5. top_student(students) ═══════════
 # 要求：返回平均分最高的 Student；空列表返回 None
 # 坑：max 可以带 key 参数（key=lambda s: s.average()）；空列表直接用 max 会 ValueError，先判空
 def top_student(students: list) -> Student | None:
     # 你的实现：平均分最高者；空列表返回 None
-    ...
-
+    if not students:
+        return None
+    else:
+        return max(students,key= lambda s: s.average())
+        
 
 # ============ 自测（别改这里） ============
 if __name__ == "__main__":

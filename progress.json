@@ -14,18 +14,18 @@
   },
   "current": {
     "week": 2,
-    "day_index": 11,
+    "day_index": 12,
     "phase": "Python 进阶 + Git + 工程习惯",
-    "next_task_date": "2026-08-17",
+    "next_task_date": "2026-08-19",
     "baseline_test_done": true,
     "roadmap_recalibrated": true
   },
   "streak": {
-    "current": 2,
+    "current": 0,
     "longest": 8,
     "total_days_completed": 9,
-    "missed_days": 1,
-    "consecutive_missed": 0
+    "missed_days": 2,
+    "consecutive_missed": 1
   },
   "difficulty": {
     "level": "normal",
@@ -50,7 +50,6 @@
   },
   "weak_points": [
     "大O复杂度分析（基础刚补，需巩固）",
-    "英语独立阅读（8/12 起改为教练推送非技术短文+摘词句+英文感悟，持续练）",
     "路径/解析问题凭感觉不实测（8/16 Q1 描述与实跑不符；教训：涉及 .. 层级先 python -c 打印再下结论）"
   ],
   "strong_points": [
@@ -183,6 +182,14 @@
       "submitted": true,
       "passed": true,
       "note": "一遍过（commit 9da1c22 学员自 push）：decorators.py 实跑 exit=0 输出 Day 10 全过，5 函数全对（timer 用 perf_counter、make_adder(5)(3)==8、manual_iter 空列表也过）；三问 Q2/Q3 全对、Q1 首答凭感觉（项目根目录/系统根目录 与实测不符）教练给实测后当天改对；英语词汇 30+ 超额、英文感悟 4 句、追问 4 git 冲突描述与实操一致；学习笔记含三层嵌套超纲内容。小尾巴：sum 遮蔽内置、make_adder 多余中间变量（不扣分）。streak 1→2。"
+    },
+    {
+      "date": "2026-08-17",
+      "week": 2,
+      "topic": "Day 11（dataclass：数据类的正确打开方式）",
+      "submitted": false,
+      "passed": null,
+      "note": "未提交，记缺勤：dataclass_practice.py 是 8/16 教练发的空脚手架原样未动（5 个实现全 ...，mtime 14:57 未变），实跑 exit=1（AssertionError: 张三平均分，实际 None）；notes/2026-08-17.md 仍是空模板；8/17 无任何学员 commit（最后一次 9da1c22=Day 10）。streak 2→0，consecutive_missed 0→1。Day 12（8/18）设为补交日：同脚手架填实现 + 笔记三问 + Week 2 周检补做；8/19 按 Day 11 验收标准批改。"
     }
   ],
   "notify": {
