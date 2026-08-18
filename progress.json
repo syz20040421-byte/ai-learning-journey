@@ -14,18 +14,18 @@
   },
   "current": {
     "week": 2,
-    "day_index": 12,
+    "day_index": 13,
     "phase": "Python 进阶 + Git + 工程习惯",
     "next_task_date": "2026-08-19",
     "baseline_test_done": true,
     "roadmap_recalibrated": true
   },
   "streak": {
-    "current": 0,
+    "current": 1,
     "longest": 8,
-    "total_days_completed": 9,
+    "total_days_completed": 10,
     "missed_days": 2,
-    "consecutive_missed": 1
+    "consecutive_missed": 0
   },
   "difficulty": {
     "level": "normal",
@@ -187,9 +187,9 @@
       "date": "2026-08-17",
       "week": 2,
       "topic": "Day 11（dataclass：数据类的正确打开方式）",
-      "submitted": false,
-      "passed": null,
-      "note": "未提交，记缺勤：dataclass_practice.py 是 8/16 教练发的空脚手架原样未动（5 个实现全 ...，mtime 14:57 未变），实跑 exit=1（AssertionError: 张三平均分，实际 None）；notes/2026-08-17.md 仍是空模板；8/17 无任何学员 commit（最后一次 9da1c22=Day 10）。streak 2→0，consecutive_missed 0→1。Day 12（8/18）设为补交日：同脚手架填实现 + 笔记三问 + Week 2 周检补做；8/19 按 Day 11 验收标准批改。"
+      "submitted": true,
+      "passed": true,
+      "note": "8/17 未动工记缺勤（streak 2→0，consecutive_missed 1）；8/18 学员按新规自己补交：dataclass_practice.py 5 实现实跑 exit=0 输出「Day 11 全过」，笔记 3 处订正（__hash__ 误记/清空措辞/不会崩）学员已自行改好，核验见 review/2026-08/2026-W34/2026-08-17.md 补交核验节。8/18 不设补交日，Day 12 按新内容（async）出任务。"
     }
   ],
   "notify": {
