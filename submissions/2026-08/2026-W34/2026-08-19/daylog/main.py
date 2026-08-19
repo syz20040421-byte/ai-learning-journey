@@ -68,6 +68,8 @@ if __name__ == "__main__":
     assert most_studied([]) == "", "空列表应返回空字符串"
 
     # 5. run：完整主流程（logging + 读写 json + 统计）
+    if LOG_FILE.exists():
+        LOG_FILE.unlink()  # 重跑前清掉上次的日志，保证断言确定
     result = run()
     assert "模块与包" in result and "120" in result, f"返回应含统计结果，实际 {result}"
     assert LOG_FILE.exists(), "run 后 study_log.json 应已生成"
