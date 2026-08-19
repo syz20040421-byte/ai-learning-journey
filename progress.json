@@ -37,7 +37,7 @@
     "_comment": "第1周摸底测试后填充。0=没接触 1=知道概念 2=写过 3=熟练",
     "python_syntax": 2,
     "python_datastructures": 2,
-    "python_oop": 2,
+    "python_oop": 3,
     "python_async": 2,
     "error_handling": 2,
     "file_io": 3,
@@ -66,7 +66,8 @@
     "Day 8 收官：fetch_weather 重写删裸 raise 改 raise_for_status，三类异常分开处理，实跑 exit=0（8/13）",
     "周1巩固三题全过（week1-review）：None 链路过滤、复杂度实测 42931 倍差距、读写失败不对称（8/14 复跑）",
     "Day 10 一遍过：装饰器（perf_counter 计时 + 透传 + return result 无漏）+ 迭代器协议 + make_adder 函数返回函数全对，笔记把带参数装饰器三层嵌套都讲清了（8/16）",
-    "Day 12 一遍过：async 五实现全对（fetch_all gather 解包保序 / tick_tock 严格交替 / 并发 0.156s<串行 0.464s 实测）；三问 Q1 满分并自己写代码实测 max 并列行为——「路径/解析凭感觉不实测」weak_point 翻篇（8/19 批改）"
+    "Day 12 一遍过：async 五实现全对（fetch_all gather 解包保序 / tick_tock 严格交替 / 并发 0.156s<串行 0.464s 实测）；三问 Q1 满分并自己写代码实测 max 并列行为——「路径/解析凭感觉不实测」weak_point 翻篇（8/19 批改）",
+    "周检补交全过：week2-review q1/q2/q3 实跑 exit=0，三层嵌套装饰器/生成器惰性/gather 保序全对；文字题三题核心全对（内存对比/语法糖等价/临时数据用 dict 总结到位），仅 2 处概念表述订正（8/19 批改）"
   ],
   "deliverables": {
     "github_repo": "https://github.com/syz20040421-byte/ai-learning-journey",
@@ -198,6 +199,14 @@
       "submitted": true,
       "passed": true,
       "note": "一次通过（commit 2dc3d42 学员 00:41 自 push）：async_practice.py 实跑 exit=0「Day 12 全过」，串行 0.464s vs 并发 0.156s 断言过；5 实现全对（fetch_one / fetch_all gather 解包保序 / tick_tock 严格交替 / compare_times / call_async_from_sync）；三问 Q1 满分（自己写代码实测 max 并列返回第一个——8/16「路径凭感觉不实测」weak_point 翻篇）、Q2/Q3 对；笔记 8 条 + 卡点（gather 用 * 解包是查资料才会的）真实。笔记 2 处订正（return_exceptions 拼写 / asyncio.run 可多次调用，8/19 任务书要求学员改）。周检 week2-review（q1/q2/q3 + notes.md）未交——欠账学员自补，补交批改并入次日。streak 1→2。python_async 0→2。"
+    },
+    {
+      "date": "2026-08-19",
+      "week": 2,
+      "topic": "周检补交（week2-review：推导式/装饰器/dataclass+async + 文字题）",
+      "submitted": true,
+      "passed": true,
+      "note": "学员补交周检（commit b74114c 学员自 push，符合「补完单独 commit」要求）：q1/q2/q3 实跑全部 exit=0（周检 Q1/Q2/Q3 过），三层嵌套装饰器闭包捕获 times、生成器惰性、gather 解包保序全对，无抄袭迹象；文字题三题核心全对，2 处概念订正（「dict 键值查找通常快于类属性」无依据——dataclass 属性同样走 __dict__ 查找同量级；「类拼错不了」——拼错属性一样 AttributeError，IDE 补全只是辅助）。q2 建议简化 result_list + 补 @functools.wraps。Day 13（模块与包）今日进行中，批改并入次日。python_oop 2→3。"
     }
   ],
   "notify": {
