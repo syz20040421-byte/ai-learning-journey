@@ -14,7 +14,8 @@
 # 坑：推导式里 if 过滤写在 for 后面：[x*x for x in numbers if 偶数]
 def filter_even_squares(numbers: list) -> list:
     # 你的实现：
-    ...
+    return [x*x for x in numbers if x%2 == 0]  #相除用/，取余用%
+     
 
 
 # ═══════════ 2. long_words_gen ═══════════
@@ -23,9 +24,9 @@ def filter_even_squares(numbers: list) -> list:
 #   - 用【生成器表达式】惰性产出长度 >= min_len 的词
 #   - 例：g = long_words_gen(["hi", "hello", "world"], 4)；next(g) == "hello"
 # 坑：return (x for x in ...) 才是生成器；写 return [x for x in ...] 是列表推导式，会一次性算完，不惰性
-def long_words_gen(words: list, min_len: int):
+def long_words_gen(words: list, min_len: int):  #要返回生成器
     # 你的实现：
-    ...
+    return (x for x in words if len(x) >= min_len)
 
 
 # ============ 自测（别改这里） ============

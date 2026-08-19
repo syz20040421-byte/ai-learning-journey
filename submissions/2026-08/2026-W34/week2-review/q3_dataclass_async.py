@@ -16,7 +16,11 @@ from dataclasses import dataclass
 @dataclass
 class Movie:
     # 你的实现：
-    ...
+    title: str
+    rating: float
+
+    def summary(self) -> str:   # 类中传参传self
+        return f"{self.title}: {self.rating} 分" 
 
 
 # ═══════════ 2. top_movies ═══════════
@@ -26,7 +30,8 @@ class Movie:
 # 坑：sorted 返回新列表、不动原列表；list.sort() 会原地改原列表（这道题用前者）
 def top_movies(movies: list) -> list:
     # 你的实现：
-    ...
+    new_list = sorted(movies, key=lambda m: m.rating, reverse=True) #lambda将实例对象指向m，排序依据指向m.rating
+    return new_list
 
 
 # ═══════════ 3. fetch_scores ═══════════
@@ -37,7 +42,14 @@ def top_movies(movies: list) -> list:
 # 坑：gather(*tasks) 要星号展开；内部协程要 async def + await，否则是同步执行
 async def fetch_scores(movies: list) -> list:
     # 你的实现：
-    ...
+    mov_list = []
+    async def one(m: Movie):
+        await asyncio.sleep(0.01)
+        return m.rating
+    for x in movies:
+        mov_list.append(one(x))  #mov_list 是打包异步函数的列表
+    result = await asyncio.gather(*mov_list)  #amait asyncio.gather()返回的是一个列表，*将mov_list解包
+    return result
 
 
 # ============ 自测（别改这里） ============

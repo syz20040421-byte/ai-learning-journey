@@ -17,7 +17,14 @@ import functools
 #       内层 wrapper(*args, **kwargs) 收调用参数并执行 func
 def repeat(times: int):
     # 你的实现（三层嵌套）：
-    ...
+    def decorator(func):
+        def wrapper(*args,**kwargs):
+            result_list = []
+            for x in range(times):
+                result_list.append(func(*args,**kwargs))
+            return result_list[times-1]
+        return wrapper
+    return decorator     # 有几层嵌套就要返回几层
 
 
 # ============ 自测（别改这里） ============
