@@ -14,18 +14,18 @@
   },
   "current": {
     "week": 2,
-    "day_index": 14,
+    "day_index": 15,
     "phase": "Python 进阶 + Git + 工程习惯",
-    "next_task_date": "2026-08-20",
+    "next_task_date": "2026-08-21",
     "baseline_test_done": true,
     "roadmap_recalibrated": true
   },
   "streak": {
-    "current": 2,
+    "current": 0,
     "longest": 8,
     "total_days_completed": 11,
-    "missed_days": 2,
-    "consecutive_missed": 0
+    "missed_days": 3,
+    "consecutive_missed": 1
   },
   "difficulty": {
     "level": "normal",
@@ -207,6 +207,14 @@
       "submitted": true,
       "passed": true,
       "note": "学员补交周检（commit b74114c 学员自 push，符合「补完单独 commit」要求）：q1/q2/q3 实跑全部 exit=0（周检 Q1/Q2/Q3 过），三层嵌套装饰器闭包捕获 times、生成器惰性、gather 解包保序全对，无抄袭迹象；文字题三题核心全对，2 处概念订正（「dict 键值查找通常快于类属性」无依据——dataclass 属性同样走 __dict__ 查找同量级；「类拼错不了」——拼错属性一样 AttributeError，IDE 补全只是辅助）。q2 建议简化 result_list + 补 @functools.wraps。Day 13（模块与包）今日进行中，批改并入次日。python_oop 2→3。"
+    },
+    {
+      "date": "2026-08-19",
+      "week": 2,
+      "topic": "Day 13（模块与包 + logging/json/datetime）",
+      "submitted": false,
+      "passed": null,
+      "note": "缺勤（8/20 批改）：脚手架原样未动（daylog 四文件 mtime 停在生成时刻），`python -m daylog.main` ImportError（__init__.py 无导出）；README/pyproject 未建、笔记未填、无 commit。streak 2→0，consecutive_missed 0→1，missed_days 2→3。按 8/18 新规不顺延、不设补交日，Day 14 照常新内容（Pydantic + 第 2 周工程化验收收尾）；daylog 脚手架保留学员自补（单独 commit，批改并入次日）。Day 12 笔记 2 处订正仍未改（return_exceptions / asyncio.run），Day 14 任务书再次要求。"
     }
   ],
   "notify": {
