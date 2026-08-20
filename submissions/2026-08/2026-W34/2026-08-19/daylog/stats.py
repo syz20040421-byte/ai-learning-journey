@@ -11,7 +11,12 @@
 # 坑：列表推导式 [e["minutes"] for e in entries] + sum() 一行搞定（Day 9 的推导式用上了）
 def total_minutes(entries: list) -> int:
     # 你的实现：
-    ...
+    """ 传统写法
+    if not entries:
+        return 0
+    return sum(x for x in entries)
+    """
+    return sum(e["minutes"] for e in entries)
 
 
 # ═══════════ 2. most_studied ═══════════
@@ -23,4 +28,14 @@ def total_minutes(entries: list) -> int:
 #     直接 max(entries, key=...) 只能找「单条最多」，不是「累计最多」
 def most_studied(entries: list) -> str:
     # 你的实现：
-    ...
+    if not entries:
+        return ""
+    min_dict = {}
+    for x in entries:
+        y = x["topic"]
+        if y not in min_dict:
+            min_dict[y] = x["minutes"]
+            continue
+        min_dict[y] = min_dict[y] + x["minutes"]
+    re_str = max(min_dict, key= min_dict.get) #找键值最大的键名
+    return re_str

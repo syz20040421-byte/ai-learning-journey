@@ -48,7 +48,7 @@ async def tick_tock() -> list:
         for i in range(1,4):
             events.append(f"{name}{i}")
             await asyncio.sleep(0)
-        return 0
+        return None
     await asyncio.gather(worker("A"),worker("B"))
     return events
         

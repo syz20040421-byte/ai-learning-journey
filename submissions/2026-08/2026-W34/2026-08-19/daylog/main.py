@@ -1,5 +1,13 @@
 """daylog.main · 主流程 + 自测（Day 13 · 模块与包实战）
 
+本文件是整包的「总指挥」：不写业务细节，只串流程。
+数据流（先看懂这张图再动手）：
+  main.py  ──from daylog import ...──>  __init__.py（转发入口）
+                                            ├──> entries.py：load_entries 读旧日志 / add_entry 加新条目
+                                            └──> stats.py：total_minutes / most_studied 算统计
+  run() 按顺序执行：读日志 → 加今天这条 → 打日志 → 存回文件 → 算统计 → 打统计 → 返回总结
+  存回 study_log.json 后，下次 run() 的 load_entries 能读回来——这就是「持久化」。
+
 先读任务书「今日知识点预习」再动手。先 cd 进任务目录再运行（venv 在仓库根）：
     cd "D:/work-coding/Knowledge base/AI_KnowledgeBase/submissions/2026-08/2026-W34/2026-08-19"
     "D:/work-coding/Knowledge base/AI_KnowledgeBase/.venv/Scripts/python.exe" -m daylog.main
@@ -15,22 +23,42 @@ LOG_FILE = Path(__file__).parent / "study_log.json"
 
 
 # ═══════════ 1. run ═══════════
-# 要求：
-#   - run() -> str：完整主流程，做 5 件事：
-#     ① logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
-#        （asctime 就是预习 4 说的「时间戳」，logging 自动带上，不用手拼）
-#     ② entries = load_entries(LOG_FILE) 读已有日志（第一次跑是空列表，别炸）
-#     ③ add_entry(entries, "模块与包", 120) 追加今天这条
-#     ④ logging.info 打一条（例：f"记录: 模块与包 120 分钟"）
-#     ⑤ 用 json.dump 写回 LOG_FILE，必须 ensure_ascii=False + indent=2 + encoding="utf-8"
-#     ⑥ total = total_minutes(entries)；top = most_studied(entries)
-#     ⑦ logging.info 打统计（例：f"统计: 共 {total} 分钟，学得最多的是 {top}"）
-#     ⑧ return f"{top} 共 {total} 分钟"
+# 作用：完整主流程——把数据层（entries.py）和统计层（stats.py）串起来，共 8 小步：
+#   ① logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+#      （asctime 就是预习 4 说的「时间戳」，logging 自动带上，不用手拼）
+#   ② entries = load_entries(LOG_FILE)    读已有日志（第一次跑是空列表，别炸）
+#   ③ add_entry(entries, "模块与包", 120) 往列表追加今天这条
+#   ④ logging.info(...)                  打一条记录（例：f"记录: 模块与包 120 分钟"）
+#   ⑤ json.dump(entries, ...) 写回 LOG_FILE（必须 ensure_ascii=False + indent=2 + encoding="utf-8"）
+#   ⑥ total = total_minutes(entries)；top = most_studied(entries)  算统计
+#   ⑦ logging.info(...)                  打统计（例：f"统计: 共 {total} 分钟，学得最多的是 {top}"）
+#   ⑧ return f"{top} 共 {total} 分钟"     ← 返回值是给自测/调用方看的总结字符串
+# 参数：无 —— 输入全靠模块顶部的 LOG_FILE（本文件所在目录的 study_log.json）
+# 返回：str —— 形如 "模块与包 共 120 分钟"（自测断言它包含 "模块与包" 和 "120"）
 # 坑：json.dump 忘 ensure_ascii=False 中文会变 \uXXXX；logging 的 level 不设 INFO 就看不到 info 记录
 def run() -> str:
     # 你的实现：
-    ...
+    logging.basicConfig(
+        level=logging.INFO, 
+        format="%(asctime)s %(levelname)s %(message)s"
+    )
 
+    entries = load_entries(LOG_FILE)
+
+    add_entry(entries, "模块与包", 120)
+
+    logging.info(f"记录: 模块与包 120 分钟")
+
+    with open(LOG_FILE, 'w', encoding='utf-8') as f:
+        json.dump(entries, f, ensure_ascii=False, indent=2)
+
+    total = total_minutes(entries)
+    top = most_studied(entries)
+
+    logging.info(f"统计: 共 {total} 分钟，学得最多的是 {top}")
+
+    return f"{top} 共 {total} 分钟"
+     
 
 # ============ 自测（别改这里） ============
 if __name__ == "__main__":
