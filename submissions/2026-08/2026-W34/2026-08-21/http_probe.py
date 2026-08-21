@@ -1,4 +1,4 @@
-"""Day 15 · HTTP 解剖：用 requests 拆开真实请求/响应
+"""Day 15 · HTTP 解剖：用 httpx 拆开真实请求/响应
 
 先读任务书「今日知识点预习」再动手。每个函数正上方都有它自己的要求（行为 + 边界 + 坑），
 写哪部分看哪部分，不用回翻顶部。填空后运行（在仓库根）：
@@ -7,17 +7,19 @@
 
 数据结构约定（全文统一）：
 - 本文件没有跨函数共享的数据结构；每个函数只返回自己的字典/数值
+- 网络请求统一用 httpx（pyproject 已声明）：httpx.get(url, timeout=10)，API 和 requests 几乎一样
 - 注意：httpbingo.org 返回的 args/headers 值是**数组**形式（如 {"name": ["alice"]}），
   取字段要带 [0]，这是它和 httpbin 的一个差异
 """
-import requests
+import httpx
 
 
 # ═══════════ 1. probe_status ═══════════
 # 要求：
 #   - probe_status(url) -> int：GET 请求并返回状态码（不调 raise_for_status）
+#   - 用 httpx.get(url, timeout=10)（httpx 已装在 .venv，API 和 requests 几乎一样）
 #   - 必须带 timeout=10——真实网络请求不设超时，服务器卡住你的脚本就永远挂起
-# 坑：requests.get 对 4xx/5xx **默认不抛异常**，resp.status_code 还是能拿到；
+# 坑：httpx.get 对 4xx/5xx **默认不抛异常**，resp.status_code 还是能拿到；
 #     想让它抛异常必须手动 resp.raise_for_status()（这是 Day 8 学过的）
 def probe_status(url: str) -> int:
     # 你的实现：
@@ -38,6 +40,7 @@ def probe_headers(url: str) -> dict:
 # ═══════════ 3. probe_args ═══════════
 # 要求：
 #   - probe_args(url, params: dict) -> dict：GET 请求带查询参数，返回 resp.json()["args"]
+#   - httpx.get(url, params=params, timeout=10) 的 params 参数会把 dict 拼成 ?name=alice&score=88.5
 #   - 即服务器回显收到的查询参数（httpbingo 会把 query string 原样回显）
 # 坑：httpbingo 的 args 值全是数组，如 {"name": ["alice"]}——取出时要带 [0]
 def probe_args(url: str, params: dict) -> dict:
@@ -48,9 +51,10 @@ def probe_args(url: str, params: dict) -> dict:
 # ═══════════ 4. probe_404 ═══════════
 # 要求：
 #   - probe_404() -> tuple[int, bool]：请求 httpbingo.org/status/404，
-#     返回 (状态码, ok 布尔值)；resp.ok 在 4xx/5xx 时为 False
+#     返回 (状态码, 成功布尔值)；resp.is_success 在 4xx/5xx 时为 False
 #   - 不 try/except、不 raise_for_status——就用默认行为观察
-# 坑：resp.ok 才是「请求是否成功」的正确判断；status_code == 404 但 ok == False
+# 坑：httpx **没有** requests 的 resp.ok 属性，成功判断用 resp.is_success
+#     （只有 2xx 才为 True）；status_code == 404 但 is_success == False
 def probe_404():
     # 你的实现：
     ...

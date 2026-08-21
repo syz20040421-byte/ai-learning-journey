@@ -14,7 +14,7 @@
     ".venv/Scripts/python.exe" -m uvicorn fastapi_first:app --reload
     然后浏览器打开 http://127.0.0.1:8000/docs
 """
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel, Field
 
 app = FastAPI(title="Day 15 学员成绩 API")
@@ -70,11 +70,13 @@ def list_students(min_score: float = Query(0, ge=0, le=100)):
 # ═══════════ 5. GET /students/{name}（路径参数） ═══════════
 # 要求：
 #   - 装饰器 @app.get("/students/{name}")，路径参数 name: str
-#   - 在 STUDENTS 里找 name 匹配的学生：找到返回该学生 dict，找不到返回 {"error": "not found"}
+#   - 在 STUDENTS 里找 name 匹配的学生：找到返回该学生 dict，找不到 raise
+#     HTTPException(status_code=404, detail="not found")（响应体自动变 {"detail": "not found"}）
 #   - 返回单个学生时要带上查询参数过滤逻辑吗？不用——本函数只管按名字查
 # 坑：路径参数名必须和 {name} 占位符一致；用 next((s for s in STUDENTS if s["name"] == name), None)
-#     是「找第一个匹配，找不到给默认值」的惯用写法；路由顺序：/students/{name} 会吞掉 /students，
-#     所以更具体的查询参数路由要写在前面（本文件 4 在 5 前面，顺序已对）
+#     是「找第一个匹配，找不到给默认值」的惯用写法；路由顺序：/students/{name} 只匹配
+#     /students/ + 一段非空内容，**不会**吞掉 /students（查询参数不参与路由匹配）；
+#     真正要小心的是和 /students/stats 这种固定子路径撞车——固定路径要声明在 {name} 前面
 @app.get("/students/{name}")
 def get_student(name: str):
     # 你的实现：
@@ -83,12 +85,13 @@ def get_student(name: str):
 
 # ═══════════ 6. POST /students（请求体校验） ═══════════
 # 要求：
-#   - 装饰器 @app.post("/students")，请求体参数 student: Student
-#   - 把 student 转成 dict 追加进 STUDENTS（STUDENTS.append(student.model_dump())），返回追加后的完整列表
+#   - 装饰器 @app.post("/students", status_code=201)——创建成功返回 201 而不是默认 200
+#   - 请求体参数 student: Student
+#   - 把 student 转成 dict 追加进 STUDENTS（STUDENTS.append(student.model_dump())），返回新建的学生 dict
 #   - 校验失败（缺字段/类型错/分数越界）FastAPI 自动 422，函数体不写 try/except
 # 坑：Pydantic v2 用 .model_dump() 转 dict（不是 .dict()，那是 v1 的旧写法）；
-#     返回整个列表而不是只返回新学生——自测断言依赖它
-@app.post("/students")
+#     201 要写在装饰器 status_code= 上，不是 return 里——「创建资源」和「查询资源」的语义分开，面试常考
+@app.post("/students", status_code=201)
 def add_student(student: Student):
     # 你的实现：
     ...
@@ -122,14 +125,17 @@ if __name__ == "__main__":
     r = client.get("/students/张三")
     assert r.status_code == 200 and r.json()["name"] == "张三", r.text
 
-    # 6. GET /students/不存在的人 → {"error": "not found"}
+    # 6. GET /students/不存在的人 → 404 + detail
     r = client.get("/students/不存在的人")
-    assert r.status_code == 200 and r.json() == {"error": "not found"}, r.text
+    assert r.status_code == 404, f"应 404，实际 {r.status_code}"
+    assert r.json() == {"detail": "not found"}, r.text
 
-    # 7. POST 合法数据 → 追加成功，列表变 4 个
+    # 7. POST 合法数据 → 201 + 返回新建的学生
     r = client.post("/students", json={"name": "赵六", "age": 23, "score": 66.0})
-    assert r.status_code == 200 and len(r.json()) == 4, f"应 4 个，实际 {r.text}"
-    assert any(s["name"] == "赵六" for s in r.json()), r.text
+    assert r.status_code == 201, f"应 201，实际 {r.status_code}: {r.text}"
+    assert r.json()["name"] == "赵六" and r.json()["score"] == 66.0, r.text
+    # 再查一次列表，确认真的写进去了（4 个）
+    assert len(client.get("/students").json()) == 4, "POST 后列表应变为 4 个"
 
     # 8. POST 坏数据（age 是字符串）→ 422，且错误信息能定位字段
     r = client.post("/students", json={"name": "钱七", "age": "abc", "score": 70})
