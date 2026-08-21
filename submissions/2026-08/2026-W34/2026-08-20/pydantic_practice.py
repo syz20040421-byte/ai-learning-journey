@@ -18,12 +18,14 @@ from pydantic import BaseModel, Field, ValidationError
 # 坑：Field 从 pydantic 导入（不是 dataclasses 的 field）；字段顺序就是报错里 loc 的顺序
 class Student(BaseModel):
     # 你的实现：
-    ...
+    name: str
+    age: int
+    score: float = Field(ge=0, le=100)
 
 
 class ClassRoom(BaseModel):
     # 你的实现：
-    ...
+    students: list[Student]
 
 
 # ═══════════ 2. make_student ═══════════
@@ -34,7 +36,8 @@ class ClassRoom(BaseModel):
 # 坑：别写 if score > 100: raise ...——Field 约束已经干了这事，重复检查就是不相信自己声明的规则
 def make_student(name, age, score) -> Student:
     # 你的实现：
-    ...
+    stu_return = Student(name=name,age=age,score=score)
+    return stu_return
 
 
 # ═══════════ 3. safe_score ═══════════
@@ -47,7 +50,15 @@ def make_student(name, age, score) -> Student:
 #     loc 是元组不是字符串，拼信息时先取 [0]
 def safe_score(row: dict):
     # 你的实现：
-    ...
+    try:
+        stu = Student(**row)
+    except ValidationError as e:
+        str_error = e.errors()[0]  #取第一条错误信息
+        loc = str_error["loc"][0]  #取错误字段
+        msg = str_error["msg"]
+        return (None, f"字段 {loc}: {msg}")
+    else:
+        return (stu,"")
 
 
 # ═══════════ 4. load_class ═══════════
@@ -58,7 +69,7 @@ def safe_score(row: dict):
 # 坑：嵌套校验是递归的，坏行会让整份数据进不来；错误信息 loc 会带下标，如 ('students', 2, 'score')
 def load_class(rows: list) -> ClassRoom:
     # 你的实现：
-    ...
+    return ClassRoom(students=rows)
 
 
 # ═══════════ 5. pass_rate ═══════════
@@ -68,8 +79,13 @@ def load_class(rows: list) -> ClassRoom:
 # 坑：先数及格人数再除总数；Python 3 里 / 已经是浮点除法，别写 //
 def pass_rate(students: list) -> float:
     # 你的实现：
-    ...
-
+    if not students:
+        return 0.0
+    a = 0
+    for x in students:
+        if x.score >= 60:
+            a += 1
+    return a/len(students)
 
 # ============ 自测（别改这里） ============
 if __name__ == "__main__":
