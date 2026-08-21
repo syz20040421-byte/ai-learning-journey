@@ -3,4 +3,9 @@
   version = "0.1.0"
   description = "13 周求职冲刺学习仓库：daily 任务 / notes 笔记 / submissions 作业"
   requires-python = ">=3.11"
-  dependencies = ["pydantic>=2"]
+  dependencies = [
+    "fastapi>=0.141.1",
+    "httpx>=0.28.1",
+    "pydantic>=2",
+    "uvicorn[standard]>=0.52.4",
+]

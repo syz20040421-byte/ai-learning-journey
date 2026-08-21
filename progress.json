@@ -13,17 +13,17 @@
     "primary_language": "python"
   },
   "current": {
-    "week": 2,
-    "day_index": 15,
-    "phase": "Python 进阶 + Git + 工程习惯",
-    "next_task_date": "2026-08-21",
+    "week": 3,
+    "day_index": 16,
+    "phase": "HTTP / FastAPI / SQL",
+    "next_task_date": "2026-08-23",
     "baseline_test_done": true,
     "roadmap_recalibrated": true
   },
   "streak": {
-    "current": 1,
+    "current": 2,
     "longest": 8,
-    "total_days_completed": 12,
+    "total_days_completed": 13,
     "missed_days": 3,
     "consecutive_missed": 0
   },
@@ -50,7 +50,7 @@
   },
   "weak_points": [
     "大O复杂度分析（基础刚补，需巩固）",
-    "dict 分组累计模式不熟（Day 13 笔记自述：忘了「不同 dict 同一键求和」；查资料才知道 max(dict, key=...)）——第 4-5 周聚合统计反复用，安排专项复习"
+    "dict 分组累计模式不熟（Day 13 笔记自述，补交已实践 most_studied 通过；第 4-5 周聚合统计反复用，安排专项复习）"
   ],
   "strong_points": [
     "基础语法扎实",
@@ -69,7 +69,8 @@
     "Day 10 一遍过：装饰器（perf_counter 计时 + 透传 + return result 无漏）+ 迭代器协议 + make_adder 函数返回函数全对，笔记把带参数装饰器三层嵌套都讲清了（8/16）",
     "Day 12 一遍过：async 五实现全对（fetch_all gather 解包保序 / tick_tock 严格交替 / 并发 0.156s<串行 0.464s 实测）；三问 Q1 满分并自己写代码实测 max 并列行为——「路径/解析凭感觉不实测」weak_point 翻篇（8/19 批改）",
     "周检补交全过：week2-review q1/q2/q3 实跑 exit=0，三层嵌套装饰器/生成器惰性/gather 保序全对；文字题三题核心全对（内存对比/语法糖等价/临时数据用 dict 总结到位），仅 2 处概念表述订正（8/19 批改）",
-    "Day 13 补交全过：daylog 五实现实跑两遍 exit=0；把 Day 12 三问教训落进代码（return 0→None 实跑仍过）；卡点诚实入笔记（dict 累计/max key 查资料）；Q1 批改闭环（8/20 批改）"
+    "Day 13 补交全过：daylog 五实现实跑两遍 exit=0；把 Day 12 三问教训落进代码（return 0→None 实跑仍过）；卡点诚实入笔记（dict 累计/max key 查资料）；Q1 批改闭环（8/20 批改）",
+    "Day 14 一遍过：pydantic 两模型+4 函数实跑 exit=0，卡点真实（KeyError vs ValidationError 自己查资料解决）；第 2 周工程化全收（pyproject/README/.gitignore 生效）（8/21 批改）"
   ],
   "deliverables": {
     "github_repo": "https://github.com/syz20040421-byte/ai-learning-journey",
@@ -217,6 +218,14 @@
       "submitted": true,
       "passed": true,
       "note": "8/20 批改：当日缺勤后学员 8/20 自补（不顺延）。补交核验通过：五实现实跑两遍 exit=0「Day 13 全过」，`__init__` 相对导入 / add_entry 原地追加 / load_entries 双空返回 [] / total_minutes 推导式 / most_studied 累计 dict + max(key=dict.get) / run() 8 步全对；笔记 11 条 + 三问达标（Q1 已落实 return 0→None 到代码，Q3 缺实证命令待补）；质量小尾巴（min_dict 命名误导、total_minutes 死代码块、add_entry 可 dict 字面量）。未清：README 未建（归 8/20 工程化项）、Day 12 笔记 2 处订正仍未改（8/20 任务书再次要求）、commit+push 未做（含 async_practice return 0→None，8/20 要求单独 commit）。streak 补交通过 0→1，consecutive_missed 1→0。"
+    },
+    {
+      "date": "2026-08-20",
+      "week": 2,
+      "topic": "Day 14（Pydantic：数据校验自动化 + 第 2 周工程化收官）",
+      "submitted": true,
+      "passed": true,
+      "note": "8/21 批改：pydantic_practice.py 实跑 exit=0 一遍过「Day 14 全过」，8 组自测全过；safe_score try/except/else 结构干净，卡点真实（直接下标取 row[name] 缺字段抛 KeyError 非 ValidationError，改 **row 解包）。工程化全收：pyproject.toml（pydantic>=2）、README 17 行、.gitignore 生效（git ls-files 无 __pycache__）、62f12f6 已 push。三问 Q2/Q3 满分，Q1 订正一处（真实网络并发通常仍比串行快，但单次测量抖动——并发快是规律，断言可靠是测量问题）。Day 12 笔记 2 处订正已改。小尾巴：make_student 中间变量多余、pass_rate 可用推导式+sum。streak 1→2。第 2 周验收闭环，第 3 周开始。"
     }
   ],
   "notify": {
