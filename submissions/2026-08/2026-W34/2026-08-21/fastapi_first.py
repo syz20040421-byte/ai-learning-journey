@@ -31,7 +31,9 @@ app = FastAPI(title="Day 15 学员成绩 API")
 #     你不需要写 try/except——框架替你捕获了 ValidationError 并转成 HTTP 响应
 class Student(BaseModel):
     # 你的实现：
-    ...
+    name: str
+    age: int
+    score: float = Field(ge=0, le=100)
 
 
 # ═══════════ 2. 预置数据 ═══════════
@@ -39,7 +41,9 @@ class Student(BaseModel):
 #   - STUDENTS = 3 个学生的 dict 列表（张三 20 岁 88.5 分 / 李四 21 岁 55.0 分 / 王五 22 岁 72.5 分）
 # 坑：score 写浮点数不要写整数，和模型字段类型保持一致（写 88 也会被宽松转换，但养成好习惯）
 STUDENTS = [
-    # 你的实现：
+    {"name": "张三", "age": 20, "score": 88.5},
+    {"name": "李四", "age": 21, "score": 55.0},
+    {"name": "王五", "age": 22, "score": 72.5}
 ]
 
 
@@ -51,7 +55,7 @@ STUDENTS = [
 @app.get("/")
 def root():
     # 你的实现：
-    ...
+    return {"message": "hello"}
 
 
 # ═══════════ 4. GET /students（查询参数过滤） ═══════════
@@ -64,7 +68,7 @@ def root():
 @app.get("/students")
 def list_students(min_score: float = Query(0, ge=0, le=100)):
     # 你的实现：
-    ...
+    return [s for s in STUDENTS if s.get('score',0) >= min_score]
 
 
 # ═══════════ 5. GET /students/{name}（路径参数） ═══════════
@@ -80,7 +84,10 @@ def list_students(min_score: float = Query(0, ge=0, le=100)):
 @app.get("/students/{name}")
 def get_student(name: str):
     # 你的实现：
-    ...
+    student = next((s for s in STUDENTS if s["name"] == name),None)
+    if student is None:
+        raise HTTPException(status_code=404,detail="not found")
+    return student
 
 
 # ═══════════ 6. POST /students（请求体校验） ═══════════
@@ -94,7 +101,8 @@ def get_student(name: str):
 @app.post("/students", status_code=201)
 def add_student(student: Student):
     # 你的实现：
-    ...
+    STUDENTS.append(student.model_dump())
+    return student.model_dump()
 
 
 # ============ 自测（别改这里） ============

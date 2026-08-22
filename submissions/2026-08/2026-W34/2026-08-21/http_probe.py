@@ -23,7 +23,8 @@ import httpx
 #     想让它抛异常必须手动 resp.raise_for_status()（这是 Day 8 学过的）
 def probe_status(url: str) -> int:
     # 你的实现：
-    ...
+    response = httpx.get(url,timeout=10)
+    return response.status_code
 
 
 # ═══════════ 2. probe_headers ═══════════
@@ -34,7 +35,8 @@ def probe_status(url: str) -> int:
 # 坑：headers.get() 取不到时返回 None，不要用 resp.headers["..."] 直接索引（可能 KeyError）
 def probe_headers(url: str) -> dict:
     # 你的实现：
-    ...
+    response = httpx.get(url,timeout=10)
+    return {"content_type": response.headers.get("Content-Type"),"server": response.headers.get("Server")}
 
 
 # ═══════════ 3. probe_args ═══════════
@@ -45,7 +47,9 @@ def probe_headers(url: str) -> dict:
 # 坑：httpbingo 的 args 值全是数组，如 {"name": ["alice"]}——取出时要带 [0]
 def probe_args(url: str, params: dict) -> dict:
     # 你的实现：
-    ...
+    resp = httpx.get(url, params=params, timeout=10)
+    return resp.json()["args"]
+
 
 
 # ═══════════ 4. probe_404 ═══════════
@@ -57,7 +61,8 @@ def probe_args(url: str, params: dict) -> dict:
 #     （只有 2xx 才为 True）；status_code == 404 但 is_success == False
 def probe_404():
     # 你的实现：
-    ...
+    resp = httpx.get("https://httpbingo.org/status/404",timeout=10)
+    return (resp.status_code,resp.is_success)
 
 
 # ============ 自测（别改这里） ============
