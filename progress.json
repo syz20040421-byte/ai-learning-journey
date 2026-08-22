@@ -21,9 +21,9 @@
     "roadmap_recalibrated": true
   },
   "streak": {
-    "current": 2,
+    "current": 3,
     "longest": 8,
-    "total_days_completed": 13,
+    "total_days_completed": 14,
     "missed_days": 3,
     "consecutive_missed": 0
   },
@@ -226,6 +226,14 @@
       "submitted": true,
       "passed": true,
       "note": "8/21 批改：pydantic_practice.py 实跑 exit=0 一遍过「Day 14 全过」，8 组自测全过；safe_score try/except/else 结构干净，卡点真实（直接下标取 row[name] 缺字段抛 KeyError 非 ValidationError，改 **row 解包）。工程化全收：pyproject.toml（pydantic>=2）、README 17 行、.gitignore 生效（git ls-files 无 __pycache__）、62f12f6 已 push。三问 Q2/Q3 满分，Q1 订正一处（真实网络并发通常仍比串行快，但单次测量抖动——并发快是规律，断言可靠是测量问题）。Day 12 笔记 2 处订正已改。小尾巴：make_student 中间变量多余、pass_rate 可用推导式+sum。streak 1→2。第 2 周验收闭环（工程化部分：pyproject/README/.gitignore 已收；src/、tests/、pytest、CI 未做——2026-08-22 按外部路线评审修正为「待第 3 周结合 FastAPI 项目补齐」，不算完全通过）。第 3 周开始。"
+    },
+    {
+      "date": "2026-08-21",
+      "week": 3,
+      "topic": "Day 15（HTTP 解剖 httpx + 第一个 FastAPI 服务）",
+      "submitted": true,
+      "passed": true,
+      "note": "8/22 休息日批改（提交前核验）：首查 http_probe 的 probe_headers 用 Content_Type（下划线）致 headers.get() 返回 None、自测 #2 挂——学员一行改 Content-Type 后复跑「HTTP probe 全过」；fastapi_first 一遍过（404 HTTPException/201 装饰器 status_code=/路由表述修正版全对）。代码无抄袭。笔记三问质量高：Q1 三种捕获场景+框架捕获原因、Q2 422vs500 责任边界、Q3 中文路径参数编码；Q1 提及 @app.exception_handler 超纲，次日批改追问真懂假懂。订正：笔记「头部字段大小写不严谨」实为下划线/连字符是不同键。小提示不扣分：s.get('score',0) 过度防御。streak 2→3。"
     }
   ],
   "notify": {
